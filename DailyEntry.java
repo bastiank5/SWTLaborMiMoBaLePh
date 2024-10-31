@@ -5,11 +5,18 @@ public class DailyEntry implements serializable{
   private Float break;
   private String absence;
   private String comment;
-
-public Float getBreak(){}
-public Float getHoursAsIs(){}
-public Float getHoursTarget(){}
   
   DailyEntry(){}
   
+}
+public Float getBreak(){}
+// Berechnung der Zeit durch ABziehen der DateObjekte
+
+public Float getHoursAsIs()throws ClassCastException{
+  return (float)TimeUnit.HOURS.convert((Math.abs(begin - end)), TimeUNIT.MilliSeconds);
+}
+
+public Float getHoursTarget(Employee e ){
+  // Aufruf des Mitarbeiter und Auslesen seiner DailyWorkload
+   return e.getDailyWorkload();
 }
