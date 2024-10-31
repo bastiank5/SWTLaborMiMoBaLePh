@@ -5,7 +5,7 @@ public class Employee {
     private String password;
     private Float workLoad;
     private Supervisor supervisor;
-    private Arraylist <DailyEntry>;
+    private Arraylist calender <DailyEntry>;
 
     protected boolean deleteVacation(){}
     protected boolean applyVacation(){}
@@ -16,4 +16,11 @@ public class Employee {
     
     Employee() {
     }
+
+    public void setCalender(ArrayList EmployeeCalender){
+        this.Calender = EmployeeCalender;
 }
+   public voud setCalender(DailyEntry e){
+       this.Clander.add(e);
+   }
+    public ArrayList getCalender(){ return this.calender;}
