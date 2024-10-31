@@ -1,4 +1,8 @@
 public class Employee {
+    /* KLASSE EMployee:
+     -Repräsentiert die einzelnen Mitarbeiter des Unternehmens
+    */
+    
     private String firstname;
     private String lastname;
     private int id;
@@ -58,22 +62,18 @@ public class Employee {
     public Supervisor getSupervisor(){
         return supervisor;
     }
-
-    public void setCalendar( Arraylist <DailyEntry>){
-        this.calendar = calendar;
-    }
-    public Arraylist getCalendar(){
+   public Arraylist getCalendar(){
         return calendar;
     }
     
 
     
     
-
+//Overload der Methode setCalender, weil beim Auslesen der Datei es sinnvoller ist die Einträge einzeln zu übergeben, statt neue ArrayList als zwischenspeicher zu nutzen
     public void setCalender(ArrayList EmployeeCalender){
         this.Calender = EmployeeCalender;
 }
-   public voud setCalender(DailyEntry e){
+   public void setCalender(DailyEntry e){
        this.Clander.add(e);
    }
     public ArrayList getCalender(){ return this.calender;}
