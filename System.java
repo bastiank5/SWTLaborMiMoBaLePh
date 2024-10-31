@@ -16,7 +16,7 @@ public class System {
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(currentFile);
     }
         for(int i = 0; i< Employee.getCalender().size();i++){
-            oos.writeObject(Employee.getCalender(i));
+            oos.writeObject(Employee.getCalender()(i));
     }
         oos.flush();
         oos.close();    
