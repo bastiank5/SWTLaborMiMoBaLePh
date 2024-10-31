@@ -7,11 +7,11 @@ public class Employee {
     private Supervisor supervisor;
     private Arraylist <DailyEntry>;
 
-    protected deleteVacation(){}
-    protected applyVacation(){}
-    protected changeVacation(){}
-    protected getEmployeeCalendar(){}
-    protected setEmployeeCalendar(){}
+    protected boolean deleteVacation(){}
+    protected boolean applyVacation(){}
+    protected boolean changeVacation(){}
+    protected Arraylist getEmployeeCalendar(){}
+    protected Arraylist setEmployeeCalendar(){}
 
     
     Employee() {
