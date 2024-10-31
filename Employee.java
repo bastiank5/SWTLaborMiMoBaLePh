@@ -3,7 +3,7 @@ public class Employee {
     private String lastname;
     private int id;
     private String password;
-    private Float workLoad;
+    private float workLoad;
     private Supervisor supervisor;
     private Arraylist calender <DailyEntry>;
 
@@ -15,7 +15,60 @@ public class Employee {
 
     
     Employee() {
+    } 
+    
+    public void setFirstname(String firstname){
+        this.firstname = firstname;
     }
+    public String getFristname(){
+        return fristname;
+    }
+
+    public void setLastname(String lastname){
+        this.lastname = lastname;
+    }
+    public String getLastname(){
+        return lastname;
+    }
+
+    public void setId(int id){
+        this.id = id;
+    }
+    public int getId(){
+        return id;
+    }
+
+    public void setPassword(String password){
+        this.password = password;
+    }
+    public String getPassword(){
+        return password;
+    }
+
+    public void setDailyWorkload(float dailyWorkload){
+        this.dailyWorkload = dailyWorkload;
+    }
+    public float getDailyWorkload(){
+        return dailyWorkload;
+    }
+
+    public void setSupervisor(Supervisor supervisor){
+        this.supervisor = supervisor;
+    }
+    public Supervisor getSupervisor(){
+        return supervisor;
+    }
+
+    public void setCalendar( Arraylist <DailyEntry>){
+        this.calendar = calendar;
+    }
+    public Arraylist getCalendar(){
+        return calendar;
+    }
+    
+
+    
+    
 
     public void setCalender(ArrayList EmployeeCalender){
         this.Calender = EmployeeCalender;
