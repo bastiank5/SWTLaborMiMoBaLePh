@@ -1,4 +1,10 @@
 public class System {
+     /* KLASSE System:
+       - Durchführung der Speicherung in Dateien
+
+       SYNTAX Dateien:
+       "File + "ID des Mitarbeiters"+ ".txt"
+     */
      public Employee currentUser;
      File currentFile = new File("File"+currenUser.getID()+".txt");
     
@@ -10,6 +16,7 @@ public class System {
         System.out.println("Hello World");
     }    
     public static void writeToFIle() throws IOException{
+//Schreibt in File, prüft vorher, ob bereits etwas vorhanden ist, damit nichts überschrieben wird, sonst wird neue Datei erstellt
     try{
     if(createNewFile(currentFile)) ObjectOutputStream oos= new ObjectOutputStream(new FileOutputStream(currentFile, true));
     else{
@@ -25,6 +32,7 @@ public class System {
     }
         
     public static void readFromFile() throws IOException{
+//Liest die Objecte einzelnd aus der Datei aus und schreib sie in den Calender des Employees
         try{
             ObjectInputStream ois = new ObjectInputStream( new FIleInputStream(currentFIle);
             While(ois.ready()){
