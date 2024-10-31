@@ -1,4 +1,5 @@
-public class Supervisor {
+public class Supervisor extends Employee{
+    
     private Arraylist <Employee>;
 
     private approveWorktime(){}
@@ -6,6 +7,7 @@ public class Supervisor {
     private denyVac(){}
     private getInferiorCalendar(){}e
     Supervisor(){
+        super();
 
     }
 }
