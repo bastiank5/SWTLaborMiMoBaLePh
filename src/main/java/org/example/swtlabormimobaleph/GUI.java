@@ -31,30 +31,6 @@ public class GUI extends Application {
     private Label lastnameLabel;
     @FXML
     private Label idLabel;
-    @FXML
-    private TableView<DailyEntry> tableView;
-    @FXML
-    private TableColumn<DailyEntry, LocalDate> day;
-    @FXML
-    private TableColumn<DailyEntry, LocalDateTime> weekday;
-    @FXML
-    private TableColumn<DailyEntry, LocalDateTime> begin;
-    @FXML
-    private TableColumn<DailyEntry, LocalDateTime> end;
-    @FXML
-    private TableColumn<DailyEntry, LocalDateTime> pause;
-    @FXML
-    private TableColumn<DailyEntry, String> hoursTarget;
-    @FXML
-    private TableColumn<DailyEntry, String> hoursAsIs;
-    @FXML
-    private TableColumn<DailyEntry, String> diff;
-    @FXML
-    private TableColumn<DailyEntry, Boolean> absence;
-    @FXML
-    private TableColumn<DailyEntry, String> Commend;
-
-    private ObservableList<DailyEntry> data = FXCollections.observableArrayList(theSystem.currentUser.getCalendar());
 
 
     @Override
@@ -100,21 +76,6 @@ public class GUI extends Application {
             throw new RuntimeException(e);
         }
     }
-    @FXML
-    public void initialize(){
-        day.setCellValueFactory(new PropertyValueFactory<>("day"));
-        weekday.setCellValueFactory(new PropertyValueFactory<>("weekday"));
-        begin.setCellValueFactory(new PropertyValueFactory<>("begin"));
-        end.setCellValueFactory(new PropertyValueFactory<>("end"));
-        pause.setCellValueFactory(new PropertyValueFactory<>("pause"));
-        hoursTarget.setCellValueFactory(new PropertyValueFactory<>("hoursTarget"));
-        hoursAsIs.setCellValueFactory(new PropertyValueFactory<>("hoursAsIs"));
-        diff.setCellValueFactory(new PropertyValueFactory<>("diff"));
-        absence.setCellValueFactory(new PropertyValueFactory<>("absence"));
-        Commend.setCellValueFactory(new PropertyValueFactory<>("Commend"));
-        tableView.setItems(data);
-    }
-
 
 //    private void openMainWindow(ActionEvent event) {
 //        Stage stage = new Stage();

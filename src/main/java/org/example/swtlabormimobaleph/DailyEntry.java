@@ -68,9 +68,9 @@ public class DailyEntry implements Serializable {
 // Berechnung der Zeit durch Abziehen der DateObjekte
 
 
-  public LocalTime getHoursAsIs()
-
-  }
+  public LocalTime getHoursAsIs(){
+ return begin;
+}
 
   public Float getHoursTarget(Employee e) {
     // Aufruf des Mitarbeiter und Auslesen seiner DailyWorkload
