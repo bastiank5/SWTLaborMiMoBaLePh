@@ -27,8 +27,9 @@ public class Employee {
     }
 
     protected boolean applyVacation() {
-        
 
+
+        return false;
     }
 
     protected boolean changeVacation() {
