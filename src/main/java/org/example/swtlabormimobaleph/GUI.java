@@ -43,6 +43,7 @@ public class GUI extends Application {
     private void openMainWindow(ActionEvent event) {
         Stage stage = new Stage();
         Parent root1 = null;
+        System.out.println("Test");
         try {
             root1 = FXMLLoader.load(getClass().getResource("GUI.fxml"));
         } catch (IOException e) {
