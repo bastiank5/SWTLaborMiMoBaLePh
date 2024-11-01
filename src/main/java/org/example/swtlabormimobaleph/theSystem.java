@@ -20,11 +20,6 @@ public class    theSystem {
 
     private static ObjectOutputStream oos;
 
-
-    public static void main(String[] args) {
-        System.out.println("hallo");
-        System.out.println("Hello World");
-    }    
     public static void writeToFIle() throws IOException {
 
 //Schreibt in File, prüft vorher, ob bereits etwas vorhanden ist, damit nichts überschrieben wird, sonst wird neue Datei erstellt
