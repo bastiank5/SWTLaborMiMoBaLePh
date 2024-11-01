@@ -51,7 +51,7 @@ public class Employee {
         this.firstname = firstname;
     }
 
-    public String getFristname() {
+    public String getFirstname() {
         return firstname;
     }
 
