@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class System {
+public class theSystem {
      /* KLASSE System:
        - Durchführung der Speicherung in Dateien
 
