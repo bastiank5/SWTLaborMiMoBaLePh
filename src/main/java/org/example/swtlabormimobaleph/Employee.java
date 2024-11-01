@@ -1,6 +1,7 @@
 package org.example.swtlabormimobaleph;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Employee {
     /* KLASSE EMployee:
@@ -15,10 +16,19 @@ public class Employee {
     private Supervisor supervisor;
     private ArrayList<DailyEntry> calender;
 
-    protected boolean deleteVacation() {
+    protected boolean deleteVacation(Date deletedVacation) {
+        for(int i = 0; i < calender.size();i++){
+            if(deletedVacation == calender.get(i).getDate()) {
+                calender.remove(i);
+                return true;
+            }
+        }
+        return false;
     }
 
     protected boolean applyVacation() {
+        
+
     }
 
     protected boolean changeVacation() {
