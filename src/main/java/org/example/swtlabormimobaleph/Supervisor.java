@@ -24,7 +24,7 @@ public class Supervisor extends Employee{
         return null;
     }
 
-    public void setEmployeelist(ArrayList <Employee>){
+    public void setEmployeelist(ArrayList <Employee>employeelist){
     this.employeelist = employeelist;
     }
     public ArrayList<Employee> getEmployeelist(){
