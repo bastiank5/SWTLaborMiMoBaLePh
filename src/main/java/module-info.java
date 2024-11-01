@@ -8,6 +8,7 @@ module org.example.swtlabormimobaleph {
     requires net.synedra.validatorfx;
     requires org.kordamp.ikonli.javafx;
     requires eu.hansolo.tilesfx;
+    requires java.desktop;
 
     opens org.example.swtlabormimobaleph to javafx.fxml;
     exports org.example.swtlabormimobaleph;
