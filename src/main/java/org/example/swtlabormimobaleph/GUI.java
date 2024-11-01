@@ -32,8 +32,7 @@ public class GUI extends Application {
 
     @FXML
     private void handleLogin(ActionEvent event) {
-        if ("user".equals(userField.getText()) && "password".equals(passwordField.getText())) {
-            System.out.println("Login erfolgreich!");
+        if(theSystem.getUserInformation(userField.getText(),passwordField.getText())) {
             openMainWindow(event);
         } else {
             System.out.println("Ungültige Anmeldeinformationen");
