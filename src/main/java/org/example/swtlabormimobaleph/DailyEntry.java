@@ -15,7 +15,8 @@ public class DailyEntry implements Serializable {
   DailyEntry() {
   }
 
-  public Float getBreak() {
+  public Float getPause() {
+      return pause;
   }
 // Berechnung der Zeit durch ABziehen der DateObjekte
 
@@ -26,5 +27,9 @@ public class DailyEntry implements Serializable {
   public Float getHoursTarget(Employee e) {
     // Aufruf des Mitarbeiter und Auslesen seiner DailyWorkload
     return e.getDailyWorkload();
+  }
+
+  public Date getDate() {
+      return null;
   }
 }

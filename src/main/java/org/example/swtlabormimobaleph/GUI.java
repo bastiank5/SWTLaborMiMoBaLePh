@@ -2,24 +2,21 @@ package org.example.swtlabormimobaleph;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
-import static javafx.application.Application.launch;
 
 public class GUI extends Application {
-    public static void main(String[] args) {
-        launch(args);
+    @Override
+    public void start(Stage stage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(GUI.class.getResource("GUI.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        stage.setTitle("Hello!");
+        stage.setScene(scene);
+        stage.show();
     }
-    public  void start(Stage primaryStage) throws IOException {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("gui.fxml"));
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
+    public static void main(String[] args) {
+        launch();
     }
 }
