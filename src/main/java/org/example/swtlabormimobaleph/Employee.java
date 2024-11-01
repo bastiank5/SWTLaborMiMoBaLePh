@@ -33,12 +33,15 @@ public class Employee {
     }
 
     protected boolean changeVacation() {
+        return false;
     }
 
     protected ArrayList getEmployeeCalendar() {
+        return null;
     }
 
     protected ArrayList setEmployeeCalendar() {
+        return null;
     }
 
     Employee() {
