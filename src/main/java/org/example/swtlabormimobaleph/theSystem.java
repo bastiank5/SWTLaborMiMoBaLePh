@@ -22,36 +22,37 @@ public class theSystem {
     private static ArrayList<Employee> employeeList = new ArrayList<>();
     private static Map<String,String> employeePasswords = new HashMap<>();
 
-    private static ObjectOutputStream oos;
 
     public static void writeToFile() throws IOException {
 
 //Schreibt in File, prüft vorher, ob bereits etwas vorhanden ist, damit nichts überschrieben wird, sonst wird neue Datei erstellt
     try{
-    if(currentFile.createNewFile()){ ObjectOutputStream oos= new ObjectOutputStream(new FileOutputStream(currentFile, true));}
-    else{
+    //if(currentFile.createNewFile()){ ObjectOutputStream oos= new ObjectOutputStream(new FileOutputStream(currentFile, true));}
+    //else{
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(currentFile));
-    }
+    //}
         for(int i = 0; i< currentUser.getCalender().size();i++){
-            oos.writeObject(currentUser.getCalender());
+
+            oos.writeObject(currentUser.getCalender().get(i));
     }
-        System.out.println(currentUser.getCalender().toString());
         oos.flush();
         oos.close();    
     }
-    catch(Exception e){}
+    catch(Exception e){
+    }
     }
         
     public static void readFromFile() throws IOException{
-//Liest die Objecte einzelnd aus der Datei aus und schreib sie in den Calender des Employees
+        //Liest die Objecte einzelnd aus der Datei aus und schreib sie in den Calender des Employees
         try{
-            ObjectInputStream ois = new ObjectInputStream( new FileInputStream(currentFile));
-            while(true){
-               DailyEntry MyObject = (DailyEntry)  ois.readObject();
-             currentUser.setCalender(MyObject);
-            }
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(currentFile));
+              DailyEntry MyObject = (DailyEntry)  ois.readObject();
+               currentUser.setCalender(MyObject);
         }
-        catch(Exception e){}
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
     }
     public static boolean getUserInformation(String id, String password){
         theSystem.employeePasswords.put("1","1");
