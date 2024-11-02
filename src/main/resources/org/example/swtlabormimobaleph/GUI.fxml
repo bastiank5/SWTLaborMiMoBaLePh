@@ -9,10 +9,10 @@
 
 <AnchorPane prefHeight="716.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.swtlabormimobaleph.GUI">
    <children>
-      <Button layoutX="140.0" layoutY="568.0" mnemonicParsing="false" text="Deny" />
-      <Button layoutX="45.0" layoutY="568.0" mnemonicParsing="false" text="Accept" />
-      <Button layoutX="261.0" layoutY="568.0" mnemonicParsing="false" text="Submit" />
-      <Button layoutX="203.0" layoutY="568.0" mnemonicParsing="false" text="Save" />
+      <Button fx:id="denyButton" layoutX="140.0" layoutY="568.0" mnemonicParsing="false" text="Deny" />
+      <Button fx:id="acceptButton" layoutX="45.0" layoutY="568.0" mnemonicParsing="false" text="Accept" />
+      <Button fx:id="submitButton" layoutX="261.0" layoutY="568.0" mnemonicParsing="false" text="Submit" />
+      <Button fx:id="saveButton" layoutX="203.0" layoutY="568.0" mnemonicParsing="false" onAction="#handleSave" text="Save" />
       <Label fx:id="idLabel" layoutX="170.0" layoutY="41.0" prefHeight="32.0" prefWidth="27.0" text="ID" />
       <Label fx:id="lastnameLabel" layoutX="84.0" layoutY="41.0" prefHeight="32.0" prefWidth="54.0" text="lastname" />
       <Label fx:id="firstnameLabel" layoutX="17.0" layoutY="41.0" prefHeight="32.0" prefWidth="54.0" text="firstname" />

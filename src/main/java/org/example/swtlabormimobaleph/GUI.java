@@ -14,6 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.time.LocalTime;
 import java.util.Date;
@@ -26,6 +27,8 @@ public class GUI extends Application {
     private PasswordField passwordField;
     @FXML
     private Button loginButton;
+
+
     @FXML
     private TableColumn<DailyEntry, String> CommentColumn;
     @FXML
@@ -54,6 +57,14 @@ public class GUI extends Application {
     private TableView<DailyEntry> tableView;
     @FXML
     private TableColumn<DailyEntry, String> weekdayColumn;
+//    @FXML
+//    private Button acceptButton;
+//    @FXML
+//    private Button denyButton;
+      @FXML
+      private Button saveButton;
+//    @FXML
+//    private Button submitButton;
 
 
 
@@ -64,6 +75,14 @@ public class GUI extends Application {
         primaryStage.setScene(new Scene(loginRoot));
         primaryStage.show();
     }
+
+    @FXML
+    public void handleSave(ActionEvent event){
+        try{
+            theSystem.writeToFile();
+        }catch(Exception e){}
+    }
+
 
     @FXML
     private void handleLogin(ActionEvent event) {
