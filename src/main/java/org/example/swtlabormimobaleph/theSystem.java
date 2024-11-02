@@ -45,11 +45,9 @@ public class theSystem {
     public static void readFromFile() throws IOException{
         //Liest die Objecte einzelnd aus der Datei aus und schreib sie in den Calender des Employees
         try{
-            while(true) {
                 ObjectInputStream ois = new ObjectInputStream(new FileInputStream(currentFile));
                 DailyEntry MyObject = (DailyEntry) ois.readObject();
                 currentUser.setCalender(MyObject);
-            }
         }
         catch(Exception e){
             e.printStackTrace();
