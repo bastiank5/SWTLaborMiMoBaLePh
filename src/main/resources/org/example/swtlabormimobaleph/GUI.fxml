@@ -7,7 +7,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="716.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.swtlabormimobaleph.GUI">
    <children>
       <Button layoutX="140.0" layoutY="568.0" mnemonicParsing="false" text="Deny" />
@@ -28,18 +27,18 @@
       <Label layoutX="14.0" layoutY="259.0" text="flextime" />
       <TextField layoutX="54.0" layoutY="632.0" />
       <Label layoutX="41.0" layoutY="609.0" text="State reason, if vacation request is denied" />
-      <TableView layoutX="214.0" layoutY="25.0" prefHeight="527.0" prefWidth="901.0" AnchorPane.leftAnchor="214.0">
+      <TableView fx:id="tableView" layoutX="214.0" layoutY="31.0" prefHeight="527.0" prefWidth="901.0" AnchorPane.leftAnchor="214.0">
         <columns>
-          <TableColumn prefWidth="87.0" text="Day" />
-          <TableColumn prefWidth="63.0" text="Weekday" />
-            <TableColumn prefWidth="75.0" text="Begin" />
-            <TableColumn prefWidth="75.0" text="End" />
-            <TableColumn prefWidth="75.0" text="Break" />
-            <TableColumn prefWidth="104.0" text="Hours Target" />
-            <TableColumn prefWidth="132.0" text="Hours as is" />
-            <TableColumn prefWidth="46.0" text="+/-" />
-            <TableColumn prefWidth="94.0" text="Absence" />
-            <TableColumn prefWidth="149.0" text="Comment" />
+          <TableColumn fx:id="dayColumn" prefWidth="87.0" text="Day" />
+          <TableColumn fx:id="weekdayColumn" prefWidth="63.0" text="Weekday" />
+            <TableColumn fx:id="beginColumn" prefWidth="75.0" text="Begin" />
+            <TableColumn fx:id="endColumn" prefWidth="75.0" text="End" />
+            <TableColumn fx:id="pauseColumn" prefWidth="75.0" text="Break" />
+            <TableColumn fx:id="hoursTargetColumn" prefWidth="104.0" text="Hours Target" />
+            <TableColumn fx:id="hoursAsIsColumn" prefWidth="132.0" text="Hours as is" />
+            <TableColumn fx:id="diffColumn" prefWidth="46.0" text="+/-" />
+            <TableColumn fx:id="absenceColumn" prefWidth="94.0" text="Absence" />
+            <TableColumn fx:id="CommendColumn" prefWidth="149.0" text="Comment" />
         </columns>
       </TableView>
    </children>

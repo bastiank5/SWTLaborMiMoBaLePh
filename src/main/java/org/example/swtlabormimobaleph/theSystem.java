@@ -1,7 +1,9 @@
 package org.example.swtlabormimobaleph;
 
 import java.io.*;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,7 +24,7 @@ public class theSystem {
 
     private static ObjectOutputStream oos;
 
-    public static void writeToFIle() throws IOException {
+    public static void writeToFile() throws IOException {
 
 //Schreibt in File, prüft vorher, ob bereits etwas vorhanden ist, damit nichts überschrieben wird, sonst wird neue Datei erstellt
     try{
@@ -51,13 +53,12 @@ public class theSystem {
         catch(Exception e){}
     }
     public static boolean getUserInformation(String id, String password){
-
-        employeePasswords.put("0001","1234");
+        theSystem.employeePasswords.put("1","1");
         Employee e = new Employee();
         e.setFirstname("Sabine");
         e.setLastname("Müller");
-        e.setId(Integer.parseInt("0001"));
-        employeeList.add(e);
+        e.setId(Integer.parseInt("1"));
+        theSystem.employeeList.add(e);
 
 
         if(employeePasswords.containsKey(id) && employeePasswords.get(id).equals(password)){
@@ -73,5 +74,7 @@ public class theSystem {
         }
         else return false;
     }
+
+
 }
 
