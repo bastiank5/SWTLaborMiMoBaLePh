@@ -1,7 +1,11 @@
 package org.example.swtlabormimobaleph;
 
+import java.lang.reflect.Array;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import java.time.LocalTime;
 
 public class Employee {
     /* KLASSE EMployee:
@@ -16,7 +20,7 @@ public class Employee {
     private Supervisor supervisor;
     private ArrayList<DailyEntry> calender;
 
-    protected boolean deleteVacation(Date deletedVacation) {
+    protected boolean deleteVacation(LocalDate deletedVacation) {
         for(int i = 0; i < calender.size();i++){
             if(deletedVacation == calender.get(i).getDate()) {
                 calender.remove(i);
@@ -45,6 +49,36 @@ public class Employee {
     }
 
     Employee() {
+        initializeCalender();
+    }
+
+    public void updateCalender(DailyEntry calenderEntry){
+      for(int i = 0; i < this.calender.size(); i++){
+          if(calender.get(i) == calenderEntry) calender.set(i)= calenderEntry;
+      }
+    }
+
+
+    public void initializeCalender(){
+        LocalDate date = LocalDate.now();
+        LocalTime begin = LocalTime.of(8, 30);
+        LocalTime end = LocalTime.of(17, 15);
+        LocalTime pause = LocalTime.of(0, 45);
+        String absence = "Vacation";
+        String comment = "Top Tag";
+        float diff = -2f;
+
+        float hoursTarget = 8.0f; // Zielstunden, z.B. 8 Stunden pro Tag
+        float hoursAsIs = 6f; // Tatsächliche Stunden, z.B. 6 Stunden
+
+        calender = new ArrayList<>();
+        for(int i = 0; i< 30 ;i++) {
+            String weekday = date.getDayOfWeek().toString();
+            DailyEntry a = new DailyEntry(date, begin, end, pause, absence, comment, diff, weekday, hoursTarget, hoursAsIs);
+            date =date.plusDays(1);
+
+            if(!(a.getWeekday().equals( "SATURDAY")) && !(a.getWeekday().equals("SUNDAY"))) calender.add(a);
+        }
     }
 
     public void setFirstname(String firstname) {
