@@ -35,6 +35,7 @@ public class theSystem {
         for(int i = 0; i< currentUser.getCalender().size();i++){
             oos.writeObject(currentUser.getCalender());
     }
+        System.out.println(currentUser.getCalender().toString());
         oos.flush();
         oos.close();    
     }
