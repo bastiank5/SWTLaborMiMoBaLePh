@@ -79,6 +79,7 @@ public class Employee {
 
             if(!(a.getWeekday().equals( "SATURDAY")) && !(a.getWeekday().equals("SUNDAY"))) calender.add(a);
         }
+        theS
     }
 
     public void setFirstname(String firstname) {
