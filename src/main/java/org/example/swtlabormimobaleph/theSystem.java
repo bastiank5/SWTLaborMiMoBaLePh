@@ -68,6 +68,10 @@ public class theSystem {
                 if(c.getId() == Integer.parseInt(id)) {
                     currentUser =c;
                     System.out.println("Current User is"+ currentUser.toString());
+                    try{
+
+                    }
+                    readFromFile();;
                 }
             }
             return true;
