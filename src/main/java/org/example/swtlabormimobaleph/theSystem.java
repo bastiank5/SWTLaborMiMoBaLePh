@@ -69,9 +69,9 @@ public class theSystem {
                     currentUser =c;
                     System.out.println("Current User is"+ currentUser.toString());
                     try{
-
+                        readFromFile();
                     }
-                    readFromFile();;
+                    catch(Exception u){}
                 }
             }
             return true;
