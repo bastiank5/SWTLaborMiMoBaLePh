@@ -6,11 +6,12 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 
 public class DailyEntry implements Serializable {
- private Date date;
+ private LocalDate date;
   private LocalTime begin;
   private LocalTime end;
   private LocalTime pause;
@@ -23,7 +24,7 @@ public class DailyEntry implements Serializable {
 
 
 
-  public DailyEntry(Date date, LocalTime begin, LocalTime end, LocalTime pause, String absence, String comment, float diff, String weekday, float hoursTarget, float hoursAsIs) {
+  public DailyEntry(LocalDate date, LocalTime begin, LocalTime end, LocalTime pause, String absence, String comment, float diff, String weekday, float hoursTarget, float hoursAsIs) {
     this.date = date;
     this.begin = begin;
     this.end = end;
@@ -36,11 +37,11 @@ public class DailyEntry implements Serializable {
     this.hoursTarget = hoursTarget;
   }
 
-  public Date getDate() {
+  public LocalDate getDate() {
     return date;
   }
 
-  public void setDate(Date date) {
+  public void setDate(LocalDate date) {
     this.date = date;
   }
 

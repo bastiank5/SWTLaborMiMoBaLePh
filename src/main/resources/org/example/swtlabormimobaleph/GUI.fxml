@@ -27,7 +27,7 @@
       <Label layoutX="14.0" layoutY="259.0" text="flextime" />
       <TextField layoutX="54.0" layoutY="632.0" />
       <Label layoutX="41.0" layoutY="609.0" text="State reason, if vacation request is denied" />
-      <TableView fx:id="tableView" layoutX="214.0" layoutY="31.0" prefHeight="527.0" prefWidth="901.0" AnchorPane.leftAnchor="214.0">
+      <TableView fx:id="tableView" editable="true" layoutX="184.0" layoutY="41.0" prefHeight="527.0" prefWidth="901.0" AnchorPane.leftAnchor="184.0">
         <columns>
           <TableColumn fx:id="dayColumn" prefWidth="87.0" text="Day" />
           <TableColumn fx:id="weekdayColumn" prefWidth="63.0" text="Weekday" />
@@ -38,7 +38,7 @@
             <TableColumn fx:id="hoursAsIsColumn" prefWidth="132.0" text="Hours as is" />
             <TableColumn fx:id="diffColumn" prefWidth="46.0" text="+/-" />
             <TableColumn fx:id="absenceColumn" prefWidth="94.0" text="Absence" />
-            <TableColumn fx:id="CommendColumn" prefWidth="149.0" text="Comment" />
+            <TableColumn fx:id="CommentColumn" prefWidth="149.0" text="Comment" />
         </columns>
       </TableView>
    </children>
