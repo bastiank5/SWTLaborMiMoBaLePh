@@ -1,14 +1,9 @@
 package org.example.swtlabormimobaleph;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
+import java.time.Duration;
 
 public class DailyEntry implements Serializable {
  private LocalDate date;
@@ -22,8 +17,6 @@ public class DailyEntry implements Serializable {
   private float hoursTarget;
   private float hoursAsIs;
 
-
-
   public DailyEntry(LocalDate date, LocalTime begin, LocalTime end, LocalTime pause, String absence, String comment, float diff, String weekday, float hoursTarget, float hoursAsIs) {
     this.date = date;
     this.begin = begin;
@@ -31,11 +24,18 @@ public class DailyEntry implements Serializable {
     this.pause = pause;
     this.absence = absence;
     this.comment = comment;
-    this.diff = diff;
-    this.weekday = weekday;
-    this.hoursAsIs = hoursAsIs;
     this.hoursTarget = hoursTarget;
+
+    this.weekday = weekday;
+            Float flce = convertLocalTimeToFloat(getHoursAsIs());
+            this.hoursAsIs = flce;
+      this.diff = this.hoursAsIs-this.hoursTarget;
   }
+    public static float convertLocalTimeToFloat(LocalTime time) {
+        int hours = time.getHour();
+        // Gesamtzeit in Sekunden
+        return hours;
+    }
 
   public LocalDate getDate() {
     return date;
@@ -51,6 +51,9 @@ public class DailyEntry implements Serializable {
 
   public void setBegin(String beginEntry) {
     this.begin = LocalTime.parse(beginEntry);
+   Float flce = convertLocalTimeToFloat(getHoursAsIs());
+    this.hoursAsIs = flce;
+      this.diff = this.hoursAsIs-hoursTarget;
   }
 
   public LocalTime getEnd() {
@@ -58,7 +61,10 @@ public class DailyEntry implements Serializable {
   }
 
   public void setEnd(String endEntry) {
-    this.end = LocalTime.parse(endEntry);
+      this.end = LocalTime.parse(endEntry);
+       Float flce = convertLocalTimeToFloat(getHoursAsIs());
+      this.hoursAsIs = flce;
+      this.diff = this.hoursAsIs-hoursTarget;
   }
 
   public LocalTime getPause() {
@@ -67,6 +73,9 @@ public class DailyEntry implements Serializable {
 
   public void setPause(String pauseEntry) {
     this.pause = LocalTime.parse(pauseEntry);
+    Float flce = convertLocalTimeToFloat(getHoursAsIs());
+      this.hoursAsIs = flce;
+      this.diff = this.hoursAsIs - hoursTarget;
   }
 
   public String getAbsence() {
@@ -102,26 +111,39 @@ public class DailyEntry implements Serializable {
   public void setHoursTarget(String hoursTarget) {
     this.hoursTarget = Float.parseFloat(hoursTarget);
   }
-  public float getHoursAsIS(){
+  /*public float getHoursAsIS(){
     return hoursAsIs;
-  }
-
+  }*/
   public void setHoursAsIs(float hoursAsIs) {
     this.hoursAsIs = hoursAsIs;
   }
 
   // Berechnung der Zeit durch Abziehen der DateObjekte
 
-
   public LocalTime getHoursAsIs(){
- return begin;
-}
 
-  public Float getHoursTarget(Employee e) {
-    // Aufruf des Mitarbeiter und Auslesen seiner DailyWorkload
+      Duration duration = Duration.between(begin, end);
+      Duration pauseDuration = Duration.between(LocalTime.MIN, pause);
+      Duration totalDuration = duration.minus(pauseDuration);
+      return LocalTime.MIN.plus(totalDuration);
+
+}
+/*
+    public float getDiff1(float hoursTarget, float hoursAsIs) {
+        // Konvertiere LocalTime in Stunden
+
+
+        return hoursTarget - hoursAsIs;
+    }
+*/
+
+
+
+
+
+  public Float getHoursTarget(Employee e) {    // Aufruf des Mitarbeiters und Auslesen seiner DailyWorkload
     return e.getDailyWorkload();
   }
-
 }
 
 

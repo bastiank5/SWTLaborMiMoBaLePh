@@ -31,8 +31,6 @@ public class Employee {
     }
 
     protected boolean applyVacation() {
-
-
         return false;
     }
 
@@ -54,7 +52,7 @@ public class Employee {
 
     public void updateCalender(DailyEntry calenderEntry){
       for(int i = 0; i < this.calender.size(); i++){
-          if(calender.get(i) == calenderEntry) calender.set(i, calenderEntry);
+          if(calender.get(i).equals(calenderEntry)) calender.set(i, calenderEntry);
       }
     }
 

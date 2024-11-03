@@ -35,7 +35,6 @@ public class theSystem {
             for (int i = 0; i < currentUser.getCalender().size(); i++) {
 //            currentFile.cle
                 oos.writeObject(currentUser.getCalender().get(i));
-                System.out.println(currentUser.getCalender().get(i).getComment().toString());
             }
             oos.flush();
             oos.close();
@@ -66,7 +65,6 @@ public class theSystem {
             currentUser.getCalendar().clear();
             while ((MyObject = (DailyEntry) ois.readObject()) != null) {
                 currentUser.setCalender(MyObject);
-                System.out.println(MyObject.getComment().toString());
             }
         } catch (EOFException e) {
             // End of file reached

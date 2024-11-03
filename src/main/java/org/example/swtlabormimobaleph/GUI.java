@@ -18,8 +18,11 @@ import javax.swing.*;
 import java.io.IOException;
 import java.time.LocalTime;
 import java.util.Date;
-
-
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.StringConverter;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 public class GUI extends Application {
     @FXML
     private TextField userField;
@@ -113,6 +116,63 @@ public class GUI extends Application {
             controller.absenceColumn.setCellValueFactory(new PropertyValueFactory<>("absence"));
             controller.CommentColumn.setCellValueFactory(new PropertyValueFactory<>("comment"));
 
+            StringConverter<LocalTime> timeConverter = new StringConverter<LocalTime>() {
+                private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+
+                @Override
+                public String toString(LocalTime time) {
+                    return time != null ? time.format(formatter) : "";
+                }
+
+                public LocalTime fromString(String string) {
+                    try {
+                        return string != null && !string.isEmpty() ? LocalTime.parse(string, formatter) : null;
+                    } catch (DateTimeParseException e) {
+                        // Falls das Format nicht stimmt, gib null zurück oder handle den Fehler
+                        return null;
+                    }
+                }
+
+                ;
+            };
+
+
+            controller.beginColumn.setEditable(true);
+            controller.beginColumn.setCellFactory(TextFieldTableCell.forTableColumn(timeConverter));
+            controller.beginColumn.setOnEditCommit(ev -> {
+                DailyEntry entry = ev.getRowValue();
+                LocalTime newTime = ev.getNewValue();
+
+
+                entry.setBegin(String.valueOf(newTime));
+
+                theSystem.currentUser.updateCalender(entry);
+            });
+
+            controller.endColumn.setEditable(true);
+            controller.endColumn.setCellFactory(TextFieldTableCell.forTableColumn(timeConverter));
+            controller.endColumn.setOnEditCommit(ev -> {
+                DailyEntry entry = ev.getRowValue();
+                LocalTime newTime = ev.getNewValue();
+
+
+                entry.setEnd(String.valueOf(newTime));
+
+                theSystem.currentUser.updateCalender(entry);
+            });
+
+            controller.pauseColumn.setEditable(true);
+            controller.pauseColumn.setCellFactory(TextFieldTableCell.forTableColumn(timeConverter));
+            controller.pauseColumn.setOnEditCommit(ev -> {
+                DailyEntry entry = ev.getRowValue();
+                LocalTime newTime = ev.getNewValue();
+
+
+                entry.setPause(String.valueOf(newTime));
+
+                theSystem.currentUser.updateCalender(entry);
+            });
+
             controller.CommentColumn.setEditable(true);
             controller.CommentColumn.setCellFactory(TextFieldTableCell.forTableColumn());
             controller.CommentColumn.setOnEditCommit(ev -> {
@@ -145,31 +205,6 @@ public class GUI extends Application {
             throw new RuntimeException(e);
         }
     }
-
-
-
-//    private void openMainWindow(ActionEvent event) {
-//        Stage stage = new Stage();
-//        Parent root1 = null;
-//        try {
-//            root1 = FXMLLoader.load(getClass().getResource("GUI.fxml"));
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        firstnameLabel.setText(theSystem.currentUser.getFirstname());
-//        lastnameLabel.setText(theSystem.currentUser.getLastname());
-//        idLabel.setText("" + theSystem.currentUser.getId());
-//
-//        stage.setTitle("Hauptfenster");
-//        stage.setScene(new Scene(root1));
-//
-//
-//        stage.show();
-//
-//        Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        loginStage.close();
-//    }
-
     public static void main(String[] args) {
         launch(args);
     }
