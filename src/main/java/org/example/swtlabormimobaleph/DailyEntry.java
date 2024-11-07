@@ -27,8 +27,8 @@ public class DailyEntry implements Serializable {
     this.hoursTarget = hoursTarget;
 
     this.weekday = weekday;
-            Float flce = convertLocalTimeToFloat(getHoursAsIs());
-            this.hoursAsIs = flce;
+    Float flce = convertLocalTimeToFloat(getHoursAsIs());
+    this.hoursAsIs = flce;
       this.diff = this.hoursAsIs-this.hoursTarget;
   }
     public static float convertLocalTimeToFloat(LocalTime time) {

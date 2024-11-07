@@ -66,9 +66,11 @@ public class GUI extends Application {
 //    private Button denyButton;
       @FXML
       private Button saveButton;
-//    @FXML
-//    private Button submitButton;
+    @FXML
+    private Button submitButton;
 
+    public GUI() throws IOException {
+    }
 
 
     @Override
@@ -95,6 +97,11 @@ public class GUI extends Application {
             System.out.println("Ungültige Anmeldeinformationen");
         }
     }
+    @FXML
+    private void handleSubmit(ActionEvent event){
+        tableView.setEditable(false);
+        theSystem.writeCommunication("Submit");
+    }
 
     @FXML
     private void openMainWindow(ActionEvent event) {
@@ -102,6 +109,7 @@ public class GUI extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("GUI.fxml"));
             Parent homeRoot = loader.load();
             GUI controller = loader.getController();
+
 
             controller.tableView.setEditable(true);
 
@@ -147,6 +155,7 @@ public class GUI extends Application {
                 entry.setBegin(String.valueOf(newTime));
 
                 theSystem.currentUser.updateCalender(entry);
+
             });
 
             controller.endColumn.setEditable(true);
@@ -201,7 +210,7 @@ public class GUI extends Application {
             // Close the login window
             Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             loginStage.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

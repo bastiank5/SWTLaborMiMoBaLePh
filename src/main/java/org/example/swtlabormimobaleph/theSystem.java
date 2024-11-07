@@ -18,12 +18,14 @@ public class theSystem {
 
     public static Employee currentUser = new Employee();
     static File currentFile = new File("File" + currentUser.getId() + ".txt");
+    static File communicationLog = new File("CommunicationLog.txt");
 
     private static ArrayList<Employee> employeeList = new ArrayList<>();
     private static Map<String, String> employeePasswords = new HashMap<>();
 
 
     public static void writeToFile() throws IOException {
+        currentFile = new File("File" + currentUser.getId() + ".txt");
 
 //Schreibt in File, prüft vorher, ob bereits etwas vorhanden ist, damit nichts überschrieben wird, sonst wird neue Datei erstellt
         try {
@@ -56,7 +58,14 @@ public class theSystem {
              }
          }
      }*/
+    public static void writeCommunication(String s){
+        try(DataOutputStream dos = new DataOutputStream(new FileOutputStream(communicationLog))){
+            dos.writeChars(currentUser.getId()+"communicates with"+currentUser.getSupervisor()+s);
+        }
+        catch(IOException e){}
+    }
     public static void readFromFile() throws IOException {
+        currentFile = new File("File" + currentUser.getId() + ".txt");
 
         // Liest die Objekte einzelnd aus der Datei aus und schreibt sie in den Kalender des Mitarbeiters
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(currentFile))) {
@@ -66,11 +75,11 @@ public class theSystem {
             while ((MyObject = (DailyEntry) ois.readObject()) != null) {
                 currentUser.setCalender(MyObject);
             }
-        } catch (EOFException e) {
-            // End of file reached
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            } catch (EOFException e) {
+                // End of file reached
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
     }
 
     public static boolean getUserInformation(String id, String password) {
@@ -80,26 +89,35 @@ public class theSystem {
         e.setLastname("Müller");
         e.setId(Integer.parseInt("1"));
         theSystem.employeeList.add(e);
-        try {
-                ObjectInputStream in = new ObjectInputStream(new FileInputStream(currentFile));
-                Integer test =(Integer) in.readObject();
-        } catch(Exception t){
-        try{writeToFile();}catch(Exception t1){}
-    }
 
+        theSystem.employeePasswords.put("2","2");
+        Supervisor z = new Supervisor();
+        z.setFirstname("Jürgen");
+        z.setLastname("Tischbein");
+        z.setId(Integer.parseInt("2"));
+        theSystem.employeeList.add(z);
+        e.setSupervisor(z);
 
         if(employeePasswords.containsKey(id) && employeePasswords.get(id).equals(password)){
+
 
             for(int i = 0; i<employeeList.size();i++){
                 Employee c = employeeList.get(i);
                 if(c.getId() == Integer.parseInt(id)) {
                     currentUser =c;
-                    System.out.println("Current User is"+ currentUser.toString());
+                    System.out.println("Current User is "+ currentUser.getFirstname());
                     try{
                         readFromFile();
                     }
                     catch(Exception u){}
                 }
+            }
+            try {
+                currentFile = new File("File"+currentUser.getId()+".txt");
+                ObjectInputStream in = new ObjectInputStream(new FileInputStream(currentFile));
+                Integer test =(Integer) in.readObject();
+            } catch(Exception t){
+                try{writeToFile();}catch(Exception t1){}
             }
             return true;
         }
