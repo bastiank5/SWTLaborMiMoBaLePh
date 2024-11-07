@@ -155,6 +155,7 @@ public class GUI extends Application {
                 entry.setBegin(String.valueOf(newTime));
 
                 theSystem.currentUser.updateCalender(entry);
+                controller.tableView.refresh();
 
             });
 
@@ -168,6 +169,7 @@ public class GUI extends Application {
                 entry.setEnd(String.valueOf(newTime));
 
                 theSystem.currentUser.updateCalender(entry);
+                controller.tableView.refresh();
             });
 
             controller.pauseColumn.setEditable(true);
@@ -180,6 +182,7 @@ public class GUI extends Application {
                 entry.setPause(String.valueOf(newTime));
 
                 theSystem.currentUser.updateCalender(entry);
+                controller.tableView.refresh();
             });
 
             controller.CommentColumn.setEditable(true);
@@ -189,6 +192,7 @@ public class GUI extends Application {
                 entry.setComment(ev.getNewValue());
 
                 theSystem.currentUser.updateCalender(entry);
+                controller.tableView.refresh();
             });
 
             //Erstellung eines Test DailyEntry
