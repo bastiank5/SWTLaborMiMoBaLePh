@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 public class theSystem {
@@ -20,7 +21,7 @@ public class theSystem {
     static File currentFile = new File("File" + currentUser.getId() + ".txt");
     static File communicationLog = new File("CommunicationLog.txt");
 
-    private static ArrayList<Employee> employeeList = new ArrayList<>();
+    public static ArrayList<Employee> employeeList = new ArrayList<>();
     private static Map<String, String> employeePasswords = new HashMap<>();
 
 
@@ -59,10 +60,35 @@ public class theSystem {
          }
      }*/
     public static void writeCommunication(String s){
-        try(DataOutputStream dos = new DataOutputStream(new FileOutputStream(communicationLog))){
-            dos.writeChars(currentUser.getId()+"communicates with"+currentUser.getSupervisor()+s);
+        try{
+            DataOutputStream dos = new DataOutputStream(new FileOutputStream(communicationLog,true));
+            BufferedWriter buffw = new BufferedWriter(new OutputStreamWriter(dos));
+            buffw.write(currentUser.getId()+" communicateswith "+currentUser.getSupervisor().getId()+" "+s+"\n");
+            buffw.flush();
+            buffw.close();
         }
         catch(IOException e){}
+    }
+
+    public static String[] readCommunication(){
+        HashSet<String> chats = new HashSet<>();
+        String[] array = new String[4];
+        try{
+            DataInputStream dis = new DataInputStream(new FileInputStream(communicationLog));
+            BufferedReader br = new BufferedReader(new InputStreamReader(dis));
+            while(br.ready()){
+                array = br.readLine().split(" ");
+                if(Integer.parseInt(array[2]) ==(currentUser.getId())){
+                   return array;
+                }
+            }
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return array;
     }
     public static void readFromFile() throws IOException {
         currentFile = new File("File" + currentUser.getId() + ".txt");
@@ -100,7 +126,6 @@ public class theSystem {
 
         if(employeePasswords.containsKey(id) && employeePasswords.get(id).equals(password)){
 
-
             for(int i = 0; i<employeeList.size();i++){
                 Employee c = employeeList.get(i);
                 if(c.getId() == Integer.parseInt(id)) {
@@ -123,6 +148,30 @@ public class theSystem {
         }
         else return false;
     }
+
+    public static String workTime(ArrayList<DailyEntry> calenderAL){
+        float totalHours = 0;
+        for (DailyEntry entry : calenderAL) {
+            totalHours += entry.getHoursAsIs().toSecondOfDay() / 3600.0;
+        }
+        int hours = (int) totalHours;
+        int minutes = (int) ((totalHours - hours) * 60);
+        return String.format("%02d:%02d", hours, minutes);
+
+    }
+
+    public static String flexTime(ArrayList<DailyEntry> calenderAL) {
+        float totalDiff = 0;
+        for (DailyEntry entry : calenderAL) {
+            totalDiff += entry.getDiff();
+        }
+        int hours = (int) totalDiff;
+        int minutes = (int) Math.abs((totalDiff - hours) * 60);
+
+        return String.format("%s%02d:%02d", totalDiff >= 0 ? "+" : "-", Math.abs(hours), minutes);
+
+    }
+
 
 
 }

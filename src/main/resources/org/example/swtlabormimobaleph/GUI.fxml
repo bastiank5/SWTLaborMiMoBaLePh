@@ -22,12 +22,12 @@
       <Label layoutX="69.0" layoutY="119.0" text="taken" />
       <Label layoutX="128.0" layoutY="119.0" text="planned" />
       <Label layoutX="16.0" layoutY="161.0" text="Working time this month" />
-      <Label layoutX="16.0" layoutY="191.0" text="time" />
+      <Label fx:id="workTimeLabel" layoutX="16.0" layoutY="191.0" text="time" />
       <Label layoutX="14.0" layoutY="230.0" text="Flextime balance" />
-      <Label layoutX="14.0" layoutY="259.0" text="flextime" />
+      <Label fx:id="flexTimeLabel" layoutX="14.0" layoutY="259.0" text="flextime" />
       <TextField layoutX="26.0" layoutY="627.0" prefHeight="26.0" prefWidth="257.0" />
       <Label layoutX="26.0" layoutY="609.0" prefHeight="18.0" prefWidth="257.0" text="State reason, if vacation request is denied:" />
-      <TableView fx:id="tableView" editable="true" layoutX="224.0" layoutY="14.0" prefHeight="527.0" prefWidth="901.0" AnchorPane.leftAnchor="224.0">
+      <TableView fx:id="tableView" layoutX="224.0" layoutY="14.0" prefHeight="527.0" prefWidth="901.0" AnchorPane.leftAnchor="224.0">
         <columns>
           <TableColumn fx:id="dayColumn" prefWidth="87.0" text="Day" />
           <TableColumn fx:id="weekdayColumn" prefWidth="63.0" text="Weekday" />
@@ -41,5 +41,6 @@
             <TableColumn fx:id="CommentColumn" prefWidth="149.0" text="Comment" />
         </columns>
       </TableView>
+      <Button layoutX="983.0" layoutY="625.0" mnemonicParsing="false" onAction="#handleShowMessages" prefHeight="30.0" prefWidth="131.0" text="show Messages" />
    </children>
 </AnchorPane>
