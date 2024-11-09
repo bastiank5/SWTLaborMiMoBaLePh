@@ -30,8 +30,6 @@ public class GUI extends Application {
     private PasswordField passwordField;
     @FXML
     private Button loginButton;
-
-
     @FXML
     private TableColumn<DailyEntry, String> CommentColumn;
     @FXML

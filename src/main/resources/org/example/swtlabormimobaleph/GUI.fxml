@@ -7,12 +7,12 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="716.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.swtlabormimobaleph.GUI">
+<AnchorPane prefHeight="716.0" prefWidth="1139.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.swtlabormimobaleph.GUI">
    <children>
-      <Button fx:id="denyButton" layoutX="140.0" layoutY="568.0" mnemonicParsing="false" text="Deny" />
-      <Button fx:id="acceptButton" layoutX="45.0" layoutY="568.0" mnemonicParsing="false" text="Accept" />
-      <Button fx:id="submitButton" layoutX="261.0" layoutY="568.0" mnemonicParsing="false" text="Submit" />
-      <Button fx:id="saveButton" layoutX="203.0" layoutY="568.0" mnemonicParsing="false" onAction="#handleSave" text="Save" />
+      <Button fx:id="denyButton" layoutX="111.0" layoutY="568.0" mnemonicParsing="false" text="Deny" />
+      <Button fx:id="acceptButton" layoutX="26.0" layoutY="568.0" mnemonicParsing="false" text="Accept" />
+      <Button fx:id="submitButton" layoutX="1056.0" layoutY="568.0" mnemonicParsing="false" onAction="#handleSubmit" text="Submit" />
+      <Button fx:id="saveButton" layoutX="983.0" layoutY="568.0" mnemonicParsing="false" onAction="#handleSave" text="Save" />
       <Label fx:id="idLabel" layoutX="170.0" layoutY="41.0" prefHeight="32.0" prefWidth="27.0" text="ID" />
       <Label fx:id="lastnameLabel" layoutX="84.0" layoutY="41.0" prefHeight="32.0" prefWidth="54.0" text="lastname" />
       <Label fx:id="firstnameLabel" layoutX="17.0" layoutY="41.0" prefHeight="32.0" prefWidth="54.0" text="firstname" />
@@ -25,9 +25,9 @@
       <Label layoutX="16.0" layoutY="191.0" text="time" />
       <Label layoutX="14.0" layoutY="230.0" text="Flextime balance" />
       <Label layoutX="14.0" layoutY="259.0" text="flextime" />
-      <TextField layoutX="54.0" layoutY="632.0" />
-      <Label layoutX="41.0" layoutY="609.0" text="State reason, if vacation request is denied" />
-      <TableView fx:id="tableView" editable="true" layoutX="184.0" layoutY="41.0" prefHeight="527.0" prefWidth="901.0" AnchorPane.leftAnchor="184.0">
+      <TextField layoutX="26.0" layoutY="627.0" prefHeight="26.0" prefWidth="257.0" />
+      <Label layoutX="26.0" layoutY="609.0" prefHeight="18.0" prefWidth="257.0" text="State reason, if vacation request is denied:" />
+      <TableView fx:id="tableView" editable="true" layoutX="224.0" layoutY="14.0" prefHeight="527.0" prefWidth="901.0" AnchorPane.leftAnchor="224.0">
         <columns>
           <TableColumn fx:id="dayColumn" prefWidth="87.0" text="Day" />
           <TableColumn fx:id="weekdayColumn" prefWidth="63.0" text="Weekday" />
