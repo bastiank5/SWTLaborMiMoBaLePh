@@ -68,7 +68,7 @@ public class theSystem {
                     buffw.write(currentUser.getId()+"_communicates with_"+currentUser.getSupervisor().getId()+"_"+r+"\n");
                     break;
                 case "Supervisor accepted":
-                    buffw.write(currentUser.getId()+"_communicate swith_"+ id +"_"+r+"\n");
+                    buffw.write(currentUser.getId()+"_communicates with_"+ id +"_"+r+"\n");
                     break;
             }
 
