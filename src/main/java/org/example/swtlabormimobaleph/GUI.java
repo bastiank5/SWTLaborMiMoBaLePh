@@ -24,6 +24,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.HashSet;
 
+import static org.example.swtlabormimobaleph.Absence.VACATION;
 import static org.example.swtlabormimobaleph.Absence.values;
 
         public class GUI extends Application {
@@ -118,6 +119,37 @@ import static org.example.swtlabormimobaleph.Absence.values;
         ourLoginStage.show();
     }
     @FXML
+    public void handleAcceptVacationButton(ActionEvent event){
+        Employee e = new Employee();
+        for(int i = 0; i< theSystem.employeeList.size(); i++){
+            if(Integer.parseInt(idLabel.getText()) ==(theSystem.employeeList.get(i).getId())) e=theSystem.employeeList.get(i);
+        }
+        if(theSystem.currentUser.equals(e))return;
+         theSystem.writeCommunication("Supervisor accepted vacation",""+e.getId());
+    }
+    @FXML
+    public void handleDenyVacationButton(ActionEvent event){
+                Employee e = new Employee();
+                for(int i = 0; i< theSystem.employeeList.size(); i++){
+                    if(Integer.parseInt(idLabel.getText()) ==(theSystem.employeeList.get(i).getId())) e=theSystem.employeeList.get(i);
+                }
+                if(theSystem.currentUser.equals(e))return;
+        else{
+            theSystem.currentUser= e;
+            DailyEntry entry;
+            theSystem.writeCommunication("Supervisor denied vacation",""+e.getId());
+            for (int i = 0; i < e.getCalender().size() ; i++) {
+                if (e.getCalender().get(i).getAbsence() == VACATION) {
+                    entry =  e.getCalendar().get(i);
+                    entry.setAbsence(Absence.NO);
+                    e.updateCalender(entry,i);
+                }
+            }
+           // mainController.tableView.refresh();
+        }
+    }
+
+    @FXML
     public void handleMessageAcceptButton(ActionEvent e){
         if(checkIfPossible()){
              theSystem.writeCommunication("Supervisor accepted worktime" ,test1.get(Integer.parseInt(messageCounterField.getText())).getSender());
@@ -155,6 +187,11 @@ import static org.example.swtlabormimobaleph.Absence.values;
             theSystem.writeToFile();
         } catch (Exception e) {
         }
+         for(int i = 0; i < theSystem.currentUser.getCalender().size();i++){
+             if(theSystem.currentUser.getCalender().get(i).getAbsence()== VACATION){
+                 theSystem.writeCommunication("Vacation requested","");
+             }
+         }
     }
 
     @FXML
@@ -178,11 +215,14 @@ import static org.example.swtlabormimobaleph.Absence.values;
         if (theSystem.currentUser instanceof Supervisor || theSystem.currentUser instanceof HR) {
             for (int i = 0; i < theSystem.employeeList.size(); i++) {
                 if (theSystem.employeeList.get(i).getId() == Integer.parseInt(showEmployeeCalenderIDField.getText())) {
+                    theSystem.currentUser2 = theSystem.currentUser;
                     theSystem.currentUser = theSystem.employeeList.get(i);
                 }
             }
             this.tableEditable = false;
+            theSystem.readFromFile();
             openMainWindow(null);
+            theSystem.currentUser = theSystem.currentUser2;
         } else {
             System.out.println("Sorry, not permitted to show employee calender");
         }
@@ -298,7 +338,6 @@ import static org.example.swtlabormimobaleph.Absence.values;
                 mainController.workTimeLabel.setText(theSystem.workTime(theSystem.currentUser.getCalendar()));
             });
             mainController.absenceColumn.setCellValueFactory(new PropertyValueFactory<>("absence"));
-            if (theSystem.currentUser instanceof HR || theSystem.currentUser instanceof Supervisor){
 
                 mainController.absenceColumn.setCellFactory(ChoiceBoxTableCell.forTableColumn(
                         FXCollections.observableArrayList(values())));
@@ -359,6 +398,7 @@ import static org.example.swtlabormimobaleph.Absence.values;
                 mainController.diffColumn.setEditable(true);
                 mainController.endColumn.setEditable(true);
             }
+
 
             ourPrimaryStage = new Stage();
             ourPrimaryStage.setTitle("Hauptfenster");

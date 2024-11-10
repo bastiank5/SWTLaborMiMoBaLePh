@@ -18,6 +18,7 @@ public class theSystem {
 
 
     public static Employee currentUser = new Employee();
+    public static Employee currentUser2 = new Employee();
     static File currentFile = new File("File" + currentUser.getId() + ".txt");
     static File communicationLog = new File("CommunicationLog.txt");
 
@@ -45,20 +46,6 @@ public class theSystem {
         }
     }
 
-    /* public static void readFromFile() throws IOException{
-         ObjectInputStream ois = new ObjectInputStream(new FileInputStream(currentFile));
-         //Liest die Objecte einzeln aus der Datei aus und schreib sie in den Calender des Employees
-             for (int i = 0; i < currentUser.getCalender().size(); i++) {
-                 try {
-                     DailyEntry MyObject = (DailyEntry) ois.readObject();
-                     currentUser.setCalender(MyObject);
-                     System.out.println(currentUser.getCalender().get(i).getComment().toString());
-                 }
-         catch(Exception e){
-                 e.printStackTrace();
-             }
-         }
-     }*/
     public static void deleteCommunication(ArrayList<Message> a){
         try {
             DataOutputStream dos = new DataOutputStream(new FileOutputStream(communicationLog));
@@ -82,6 +69,14 @@ public class theSystem {
                 case "Supervisor accepted":
                     buffw.write(currentUser.getId()+"_communicates with_"+ id +"_"+r+"\n");
                     break;
+                case "Vacation requested":
+                    buffw.write(currentUser.getId()+"_communicates with_"+ currentUser.getSupervisor().getId()+"_"+r+"\n");
+                    break;
+                case "Supervisor denied vacation":
+                    buffw.write(currentUser2.getId()+"_communicates with_"+ id +"_"+r+"\n");
+                    break;
+                case "Supervisor accepted vacation":
+                    buffw.write(currentUser2.getId()+"_communicates with_"+ id +"_"+r+"\n");
             }
 
             buffw.flush();
@@ -152,6 +147,7 @@ public class theSystem {
         theSystem.employeeList.add(h);
         h.setSupervisor(z);
 
+
         if(employeePasswords.containsKey(id) && employeePasswords.get(id).equals(password)){
                 for (int i = 0; i < employeeList.size(); i++) {
                     Employee c = employeeList.get(i);
@@ -196,7 +192,6 @@ public class theSystem {
         int minutes = (int) Math.abs((totalDiff - hours) * 60);
 
         return String.format("%s%02d:%02d", totalDiff >= 0 ? "+" : "-", Math.abs(hours), minutes);
-
     }
 
     public static String plannedVacation() {

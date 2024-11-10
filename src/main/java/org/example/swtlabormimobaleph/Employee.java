@@ -149,6 +149,9 @@ public class Employee {
     public void setCalender(DailyEntry e) {
         this.calender.add(e);
     }
+    public void updateCalender(DailyEntry e, int index) {
+        this.calender.set(index,e);
+    }
 
     public ArrayList<DailyEntry> getCalender() {
         return this.calender;

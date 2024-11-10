@@ -6,7 +6,7 @@ public class Message {
     public String Sender;
     public String Topic;
     public String Counter ="";
-    public int test =0;
+    public static int test =0;
 
     public Message(String sender, String reciever, String topic) {
         Reciever = reciever;
