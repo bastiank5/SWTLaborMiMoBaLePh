@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.ChoiceBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
@@ -22,6 +23,8 @@ import javafx.util.StringConverter;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.HashSet;
+
+import static org.example.swtlabormimobaleph.Absence.values;
 
 public class GUI extends Application {
     private boolean tableEditable = true;
@@ -218,6 +221,8 @@ public class GUI extends Application {
 
                 theSystem.currentUser.updateCalender(entry);
                 controller.tableView.refresh();
+                controller.workTimeLabel.setText(theSystem.workTime(theSystem.currentUser.getCalendar()));
+                controller.flexTimeLabel.setText(theSystem.flexTime((theSystem.currentUser.getCalendar())));
             });
 
             controller.endColumn.setCellFactory(TextFieldTableCell.forTableColumn(timeConverter));
@@ -229,6 +234,8 @@ public class GUI extends Application {
 
                 theSystem.currentUser.updateCalender(entry);
                 controller.tableView.refresh();
+                controller.workTimeLabel.setText(theSystem.workTime(theSystem.currentUser.getCalendar()));
+                controller.flexTimeLabel.setText(theSystem.flexTime((theSystem.currentUser.getCalendar())));
             });
 
             controller.pauseColumn.setCellFactory(TextFieldTableCell.forTableColumn(timeConverter));
@@ -240,7 +247,22 @@ public class GUI extends Application {
 
                 theSystem.currentUser.updateCalender(entry);
                 controller.tableView.refresh();
+                controller.flexTimeLabel.setText(theSystem.flexTime((theSystem.currentUser.getCalendar())));
+                controller.workTimeLabel.setText(theSystem.workTime(theSystem.currentUser.getCalendar()));
             });
+            controller.absenceColumn.setCellValueFactory(new PropertyValueFactory<>("absence"));
+            if (theSystem.currentUser instanceof HR || theSystem.currentUser instanceof Supervisor){
+
+                controller.absenceColumn.setCellFactory(ChoiceBoxTableCell.forTableColumn(
+                        FXCollections.observableArrayList(values())));
+
+                controller.absenceColumn.setOnEditCommit(ev -> {
+                    DailyEntry entry = ev.getRowValue();
+                    entry.setAbsence (ev.getNewValue());
+
+                    theSystem.currentUser.updateCalender(entry);
+                    controller.tableView.refresh();
+                });}
 
 
             controller.CommentColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -264,6 +286,8 @@ public class GUI extends Application {
             controller.idLabel.setText(String.valueOf(theSystem.currentUser.getId()));
             controller.workTimeLabel.setText(theSystem.workTime(theSystem.currentUser.getCalendar()));
             controller.flexTimeLabel.setText(theSystem.flexTime((theSystem.currentUser.getCalendar())));
+
+
 
             if(tableEditable == false){
                 controller.tableView.setEditable(false);

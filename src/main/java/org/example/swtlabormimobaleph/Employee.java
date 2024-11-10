@@ -62,7 +62,7 @@ public class Employee {
             LocalTime begin = LocalTime.of(8, 30);
             LocalTime end = LocalTime.of(17, 15);
             LocalTime pause = LocalTime.of(0, 45);
-            String absence = "Vacation";
+            Absence absence = Absence.NO;
             String comment = "";
             float diff = -2f;
             float hoursTarget = 8.0f;
