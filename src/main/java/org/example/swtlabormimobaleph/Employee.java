@@ -74,8 +74,10 @@ public class Employee {
                 if (date.getDayOfWeek().toString().equals("SATURDAY") || date.getDayOfWeek().toString().equals("SUNDAY")) {
                     hoursTarget = 0.0f;
                     comment = "Frei";
+                    absence = Absence.WEEKEND;
                 } else {
-                    comment = "Top Tag";
+                    absence = Absence.NO;
+                    comment = "";
                     hoursTarget = 8.0f;
                 }
                 String weekday = date.getDayOfWeek().toString();

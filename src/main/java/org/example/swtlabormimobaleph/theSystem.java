@@ -200,6 +200,28 @@ public class theSystem {
 
     }
 
+    public static String plannedVacation() {
+        int vacationCount = 0;
+        for (DailyEntry entry : currentUser.getCalendar()) {
+            if(entry.getAbsence() == Absence.VACATION){
+                vacationCount++;
+            }
+        }
+        return String.format("%02d", vacationCount);
+    }
+
+    public static String openVacation() {
+        int vacationCount = 0;
+        for (DailyEntry entry : currentUser.getCalendar()) {
+            if(entry.getAbsence() == Absence.VACATION){
+                vacationCount++;
+            }
+        }
+        int openVacationNumer = 30-vacationCount;
+        return String.format("%02d", openVacationNumer);
+
+    }
+
 
 
 }

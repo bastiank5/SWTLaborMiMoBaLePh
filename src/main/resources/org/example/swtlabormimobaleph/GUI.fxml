@@ -8,39 +8,42 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="716.0" prefWidth="1139.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.swtlabormimobaleph.GUI">
-   <children>
-      <Button fx:id="denyButton" layoutX="111.0" layoutY="568.0" mnemonicParsing="false" text="Deny" />
-      <Button fx:id="acceptButton" layoutX="26.0" layoutY="568.0" mnemonicParsing="false" text="Accept" />
-      <Button fx:id="submitButton" layoutX="1056.0" layoutY="568.0" mnemonicParsing="false" onAction="#handleSubmit" text="Submit" />
-      <Button fx:id="saveButton" layoutX="983.0" layoutY="568.0" mnemonicParsing="false" onAction="#handleSave" text="Save" />
-      <Label fx:id="idLabel" layoutX="170.0" layoutY="41.0" prefHeight="32.0" prefWidth="27.0" text="ID" />
-      <Label fx:id="lastnameLabel" layoutX="84.0" layoutY="41.0" prefHeight="32.0" prefWidth="54.0" text="lastname" />
-      <Label fx:id="firstnameLabel" layoutX="17.0" layoutY="41.0" prefHeight="32.0" prefWidth="54.0" text="firstname" />
-      <Label layoutX="17.0" layoutY="14.0" text="Employee" />
-      <Label layoutX="16.0" layoutY="119.0" text="open" />
-      <Label layoutX="16.0" layoutY="84.0" text="Vacation" />
-      <Label layoutX="69.0" layoutY="119.0" text="taken" />
-      <Label layoutX="128.0" layoutY="119.0" text="planned" />
-      <Label layoutX="16.0" layoutY="161.0" text="Working time this month" />
-      <Label fx:id="workTimeLabel" layoutX="16.0" layoutY="191.0" text="time" />
-      <Label layoutX="14.0" layoutY="230.0" text="Flextime balance" />
-      <Label fx:id="flexTimeLabel" layoutX="14.0" layoutY="259.0" text="flextime" />
-      <TextField layoutX="26.0" layoutY="627.0" prefHeight="26.0" prefWidth="257.0" />
-      <Label layoutX="26.0" layoutY="609.0" prefHeight="18.0" prefWidth="257.0" text="State reason, if vacation request is denied:" />
-      <TableView fx:id="tableView" layoutX="224.0" layoutY="14.0" prefHeight="527.0" prefWidth="901.0" AnchorPane.leftAnchor="224.0">
-        <columns>
-          <TableColumn fx:id="dayColumn" prefWidth="87.0" text="Day" />
-          <TableColumn fx:id="weekdayColumn" prefWidth="63.0" text="Weekday" />
-            <TableColumn fx:id="beginColumn" prefWidth="75.0" text="Begin" />
-            <TableColumn fx:id="endColumn" prefWidth="75.0" text="End" />
-            <TableColumn fx:id="pauseColumn" prefWidth="75.0" text="Break" />
-            <TableColumn fx:id="hoursTargetColumn" prefWidth="104.0" text="Hours Target" />
-            <TableColumn fx:id="hoursAsIsColumn" prefWidth="132.0" text="Hours as is" />
-            <TableColumn fx:id="diffColumn" prefWidth="46.0" text="+/-" />
-            <TableColumn fx:id="absenceColumn" prefWidth="94.0" text="Absence" />
-            <TableColumn fx:id="CommentColumn" prefWidth="149.0" text="Comment" />
-        </columns>
-      </TableView>
-      <Button layoutX="983.0" layoutY="625.0" mnemonicParsing="false" onAction="#handleShowMessages" prefHeight="30.0" prefWidth="131.0" text="show Messages" />
-   </children>
+    <children>
+        <Button fx:id="denyButton" layoutX="111.0" layoutY="568.0" mnemonicParsing="false" text="Deny" />
+        <Button fx:id="acceptButton" layoutX="26.0" layoutY="568.0" mnemonicParsing="false" text="Accept" />
+        <Button fx:id="submitButton" layoutX="1056.0" layoutY="568.0" mnemonicParsing="false" onAction="#handleSubmit" text="Submit" />
+        <Button fx:id="saveButton" layoutX="983.0" layoutY="568.0" mnemonicParsing="false" onAction="#handleSave" text="Save" />
+        <Label fx:id="idLabel" layoutX="170.0" layoutY="41.0" prefHeight="32.0" prefWidth="27.0" text="ID" />
+        <Label fx:id="lastnameLabel" layoutX="84.0" layoutY="41.0" prefHeight="32.0" prefWidth="54.0" text="lastname" />
+        <Label fx:id="firstnameLabel" layoutX="17.0" layoutY="41.0" prefHeight="32.0" prefWidth="54.0" text="firstname" />
+        <Label layoutX="17.0" layoutY="14.0" text="Employee" />
+        <Label layoutX="17.0" layoutY="119.0" text="open" />
+        <Label layoutX="17.0" layoutY="84.0" text="Vacation" />
+        <Label layoutX="69.0" layoutY="119.0" text="taken" />
+        <Label layoutX="132.0" layoutY="119.0" text="planned" />
+        <Label layoutX="17.0" layoutY="193.0" text="Working time this month" />
+        <Label fx:id="workTimeLabel" layoutX="17.0" layoutY="216.0" text="time" />
+        <Label layoutX="17.0" layoutY="246.0" text="Flextime balance" />
+        <Label fx:id="flexTimeLabel" layoutX="17.0" layoutY="269.0" text="flextime" />
+        <TextField layoutX="26.0" layoutY="627.0" prefHeight="26.0" prefWidth="257.0" />
+        <Label layoutX="26.0" layoutY="609.0" prefHeight="18.0" prefWidth="257.0" text="State reason, if vacation request is denied:" />
+        <TableView fx:id="tableView" layoutX="224.0" layoutY="14.0" prefHeight="527.0" prefWidth="901.0" AnchorPane.leftAnchor="224.0">
+            <columns>
+                <TableColumn fx:id="dayColumn" prefWidth="87.0" text="Day" />
+                <TableColumn fx:id="weekdayColumn" prefWidth="63.0" text="Weekday" />
+                <TableColumn fx:id="beginColumn" prefWidth="75.0" text="Begin" />
+                <TableColumn fx:id="endColumn" prefWidth="75.0" text="End" />
+                <TableColumn fx:id="pauseColumn" prefWidth="75.0" text="Break" />
+                <TableColumn fx:id="hoursTargetColumn" prefWidth="104.0" text="Hours Target" />
+                <TableColumn fx:id="hoursAsIsColumn" prefWidth="132.0" text="Hours as is" />
+                <TableColumn fx:id="diffColumn" prefWidth="46.0" text="+/-" />
+                <TableColumn fx:id="absenceColumn" prefWidth="94.0" text="Absence" />
+                <TableColumn fx:id="CommentColumn" prefWidth="149.0" text="Comment" />
+            </columns>
+        </TableView>
+        <Button layoutX="983.0" layoutY="625.0" mnemonicParsing="false" onAction="#handleShowMessages" prefHeight="30.0" prefWidth="131.0" text="show Messages" />
+        <Label fx:id="openVacationLabel" layoutX="17.0" layoutY="152.0" text="Label" />
+        <Label fx:id="takenVacationLabel" layoutX="69.0" layoutY="152.0" text="Label" />
+        <Label fx:id="plannedVacationLabel" layoutX="132.0" layoutY="152.0" text="Label" />
+    </children>
 </AnchorPane>

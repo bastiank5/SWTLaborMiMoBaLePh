@@ -28,7 +28,6 @@ import static org.example.swtlabormimobaleph.Absence.values;
 
 public class GUI extends Application {
     private boolean tableEditable = true;
-
     private Stage ourPrimaryStage;
     private Stage ourLoginStage;
     private static ArrayList<Message> test1 = new ArrayList<>();
@@ -66,6 +65,12 @@ public class GUI extends Application {
     private Label workTimeLabel;
     @FXML
     private Label flexTimeLabel;
+    @FXML
+    private Label openVacationLabel;
+    @FXML
+    private Label plannedVacationLabel;
+    @FXML
+    private Label takenVacationLabel;
     @FXML
     private TableView<DailyEntry> tableView;
     @FXML
@@ -297,6 +302,9 @@ public class GUI extends Application {
 
                     theSystem.currentUser.updateCalender(entry);
                     mainController.tableView.refresh();
+                    mainController.plannedVacationLabel.setText(theSystem.plannedVacation());
+                    mainController.openVacationLabel.setText(theSystem.openVacation());
+                    mainController.takenVacationLabel.setText("00");
                 });}
 
 
@@ -321,6 +329,9 @@ public class GUI extends Application {
             mainController.idLabel.setText(String.valueOf(theSystem.currentUser.getId()));
             mainController.workTimeLabel.setText(theSystem.workTime(theSystem.currentUser.getCalendar()));
             mainController.flexTimeLabel.setText(theSystem.flexTime((theSystem.currentUser.getCalendar())));
+            mainController.plannedVacationLabel.setText(theSystem.plannedVacation());
+            mainController.openVacationLabel.setText(theSystem.openVacation());
+            mainController.takenVacationLabel.setText("00");
 
             if(tableEditable == false){
                 mainController.tableView.setEditable(false);
