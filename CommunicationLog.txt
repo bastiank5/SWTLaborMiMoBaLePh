@@ -1,1 +1,9 @@
-2_communicates with_1_Supervisor accepted
+1_communicates with_2_Vacation requested
+2_communicates with_1_Supervisor denied vacation
+1_communicates with_2_Vacation requested
+1_communicates with_2_Vacation requested
+1_communicates with_2_Vacation requested
+1_communicates with_2_Vacation requested
+1_communicates with_2_Vacation requested
+2_communicates with_1_Supervisor denied vacation
+2_communicates with_1_Supervisor accepted vacation

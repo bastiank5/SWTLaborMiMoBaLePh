@@ -26,114 +26,121 @@ import java.util.HashSet;
 
 import static org.example.swtlabormimobaleph.Absence.values;
 
-public class GUI extends Application {
-    private boolean tableEditable = true;
-    private Stage ourPrimaryStage;
-    private Stage ourLoginStage;
-    private static ArrayList<Message> test1 = new ArrayList<>();
-    @FXML
-    private TextField userField;
-    @FXML
-    private PasswordField passwordField;
-    @FXML
-    private Button loginButton;
-    @FXML
-    private TableColumn<DailyEntry, String> CommentColumn;
-    @FXML
-    private TableColumn<DailyEntry, Absence> absenceColumn;
-    @FXML
-    private TableColumn<DailyEntry, LocalTime> beginColumn;
-    @FXML
-    private TableColumn<DailyEntry, LocalTime> pauseColumn;
-    @FXML
-    private TableColumn<DailyEntry, Date> dayColumn;
-    @FXML
-    private TableColumn<DailyEntry, Float> diffColumn;
-    @FXML
-    private TableColumn<DailyEntry, LocalTime> endColumn;
-    @FXML
-    private Label firstnameLabel;
-    @FXML
-    private TableColumn<DailyEntry, Float> hoursAsIsColumn;
-    @FXML
-    private TableColumn<DailyEntry, Float> hoursTargetColumn;
-    @FXML
-    private Label idLabel;
-    @FXML
-    private Label lastnameLabel;
-    @FXML
-    private Label workTimeLabel;
-    @FXML
-    private Label flexTimeLabel;
-    @FXML
-    private Label openVacationLabel;
-    @FXML
-    private Label plannedVacationLabel;
-    @FXML
-    private Label takenVacationLabel;
-    @FXML
-    private TableView<DailyEntry> tableView;
-    @FXML
-    private TableColumn<DailyEntry, String> weekdayColumn;
+        public class GUI extends Application {
+            private boolean tableEditable = true;
+            private Stage ourPrimaryStage;
+            private Stage ourLoginStage;
+            private static ArrayList<Message> test1 = new ArrayList<>();
+            @FXML
+            private TextField userField;
+            @FXML
+            private PasswordField passwordField;
+            @FXML
+            private Button loginButton;
+            @FXML
+            private TableColumn<DailyEntry, String> CommentColumn;
+            @FXML
+            private TableColumn<DailyEntry, Absence> absenceColumn;
+            @FXML
+            private TableColumn<DailyEntry, LocalTime> beginColumn;
+            @FXML
+            private TableColumn<DailyEntry, LocalTime> pauseColumn;
+            @FXML
+            private TableColumn<DailyEntry, Date> dayColumn;
+            @FXML
+            private TableColumn<DailyEntry, Float> diffColumn;
+            @FXML
+            private TableColumn<DailyEntry, LocalTime> endColumn;
+            @FXML
+            private Label firstnameLabel;
+            @FXML
+            private TableColumn<DailyEntry, Float> hoursAsIsColumn;
+            @FXML
+            private TableColumn<DailyEntry, Float> hoursTargetColumn;
+            @FXML
+            private Label idLabel;
+            @FXML
+            private Label lastnameLabel;
+            @FXML
+            private Label workTimeLabel;
+            @FXML
+            private Label flexTimeLabel;
+            @FXML
+            private Label openVacationLabel;
+            @FXML
+            private Label plannedVacationLabel;
+            @FXML
+            private Label takenVacationLabel;
+            @FXML
+            private TableView<DailyEntry> tableView;
+            @FXML
+            private TableColumn<DailyEntry, String> weekdayColumn;
+            @FXML
+            private TableView<Message> messageTableView;
+            @FXML
+            private TableColumn<String,String>employeeColumn;
+            @FXML
+            private TableColumn<String,String>topicColumn;
+            @FXML
+            private TableColumn<String,String>counterColumn;
+            @FXML
+            private TextField messageCounterField;
+            @FXML
+            private Button acceptButton;
+            @FXML
+            private Button denyButton;
+            @FXML
+            private Button messagesAcceptButton;
+            @FXML
+            private Button showEmployeeCalenderButton;
+            @FXML
+            private Button messagesDenyButton;
+            @FXML
+            private Button saveButton;
+            @FXML
+            private Button submitButton;
+            @FXML
+            private TextField showEmployeeCalenderIDField;
 
-    @FXML
-    private TableView<Message> messageTableView;
-    @FXML
-    private TableColumn<String,String>employeeColumn;
-    @FXML
-    private TableColumn<String,String>topicColumn;
-    @FXML
-    private TableColumn<String,String>counterColumn;
-    @FXML
-    private TextField messageCounterField;
+            private static org.example.swtlabormimobaleph.GUI mainController;
+            private static org.example.swtlabormimobaleph.GUI messagesController;
+            private Parent loginRoot;
 
-    @FXML
-    private Button messagesAcceptButton;
-    @FXML
-    private Button showEmployeeCalenderButton;
-    @FXML
-    private Button messagesDenyButton;
+            public GUI() throws IOException {
+            }
 
-    @FXML
-    private Button saveButton;
-    @FXML
-    private Button submitButton;
-    @FXML
-    private TextField showEmployeeCalenderIDField;
-
-    private static GUI mainController;
-    private static GUI messagesController;
-    private Parent loginRoot;
-
-    public GUI() throws IOException {
-    }
-
-    @Override
-    public void start(Stage Stage) throws IOException {
-        ourLoginStage = Stage;
-        loginRoot = FXMLLoader.load(getClass().getResource("LoginGUI.fxml"));
-        ourLoginStage.setTitle("Login");
+            @Override
+            public void start(Stage Stage) throws IOException {
+                ourLoginStage = Stage;
+                loginRoot = FXMLLoader.load(getClass().getResource("LoginGUI.fxml"));
+                ourLoginStage.setTitle("Login");
         ourLoginStage.setScene(new Scene(loginRoot));
         ourLoginStage.show();
     }
     @FXML
     public void handleMessageAcceptButton(ActionEvent e){
         if(checkIfPossible()){
-             theSystem.writeCommunication("Supervisor accepted" ,test1.get(Integer.parseInt(messageCounterField.getText())).getSender());
-             Message z = new Message(""+theSystem.currentUser.getId(),""+test1.get(Integer.parseInt(messageCounterField.getText())).getSender(),"Supervisor accepted");
+             theSystem.writeCommunication("Supervisor accepted worktime" ,test1.get(Integer.parseInt(messageCounterField.getText())).getSender());
+             Message z = new Message(""+theSystem.currentUser.getId(),""+test1.get(Integer.parseInt(messageCounterField.getText())).getSender(),"Supervisor accepted worktime");
              test1.add(z);
             test1.remove(Integer.parseInt(messageCounterField.getText()));
             theSystem.deleteCommunication(test1);
 
             messagesController.messageTableView.refresh();
-            //messagesController.
             }
         }
     @FXML
     public void handleMessageDenyButton(ActionEvent e){
         if(checkIfPossible()){
+            theSystem.writeCommunication("Supervisor denied worktime" ,test1.get(Integer.parseInt(messageCounterField.getText())).getSender());
+            Message z = new Message(""+theSystem.currentUser.getId(),""+test1.get(Integer.parseInt(messageCounterField.getText())).getSender(),"Supervisor denied worktime");
+            test1.add(z);
+            test1.remove(Integer.parseInt(messageCounterField.getText()));
+            theSystem.deleteCommunication(test1);
+            messagesController.messageTableView.refresh();
         }
     }
+//Prüft bei der Eingabe der Nachrichtennummer, ob diese existiert
     private boolean checkIfPossible(){
         System.out.println(test1.size());
         for(int i = 0; i < test1.size();i++){
@@ -305,7 +312,7 @@ public class GUI extends Application {
                     mainController.plannedVacationLabel.setText(theSystem.plannedVacation());
                     mainController.openVacationLabel.setText(theSystem.openVacation());
                     mainController.takenVacationLabel.setText("00");
-                });}
+                });
 
 
             mainController.CommentColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -334,9 +341,9 @@ public class GUI extends Application {
             mainController.takenVacationLabel.setText("00");
 
             if(tableEditable == false){
-                mainController.tableView.setEditable(false);
+                mainController.tableView.setEditable(true);
                 mainController.CommentColumn.setEditable(false);
-                mainController.absenceColumn.setEditable(false);
+                //mainController.absenceColumn.setEditable(false);
                 mainController.beginColumn.setEditable(false);
                 mainController.pauseColumn.setEditable(false);
                 mainController.dayColumn.setEditable(false);

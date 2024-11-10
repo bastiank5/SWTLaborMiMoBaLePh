@@ -153,18 +153,17 @@ public class theSystem {
         h.setSupervisor(z);
 
         if(employeePasswords.containsKey(id) && employeePasswords.get(id).equals(password)){
-
-            for(int i = 0; i<employeeList.size();i++){
-                Employee c = employeeList.get(i);
-                if(c.getId() == Integer.parseInt(id)) {
-                    currentUser =c;
-                    System.out.println("Current User is "+ currentUser.getFirstname());
-                    try{
-                        readFromFile();
+                for (int i = 0; i < employeeList.size(); i++) {
+                    Employee c = employeeList.get(i);
+                    if (c.getId() == Integer.parseInt(id)) {
+                        currentUser = c;
+                        //System.out.println("Current User is "+ currentUser.getFirstname());
+                        try {
+                            readFromFile();
+                        } catch (Exception u) {
+                        }
                     }
-                    catch(Exception u){}
                 }
-            }
             try {
                 currentFile = new File("File"+currentUser.getId()+".txt");
                 ObjectInputStream in = new ObjectInputStream(new FileInputStream(currentFile));
@@ -221,8 +220,6 @@ public class theSystem {
         return String.format("%02d", openVacationNumer);
 
     }
-
-
 
 }
 
