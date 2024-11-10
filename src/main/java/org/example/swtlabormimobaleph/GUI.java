@@ -114,8 +114,10 @@ public class GUI extends Application {
     public void handleMessageAcceptButton(ActionEvent e){
         if(checkIfPossible()){
              theSystem.writeCommunication("Supervisor accepted" ,test1.get(Integer.parseInt(messageCounterField.getText())).getSender());
+             Message z = new Message(""+theSystem.currentUser.getId(),""+test1.get(Integer.parseInt(messageCounterField.getText())).getReciever(),"Supervisor accepted");
+             test1.add(z);
             test1.remove(Integer.parseInt(messageCounterField.getText()));
-
+            theSystem.deleteCommunication(test1);
             }
         }
     @FXML

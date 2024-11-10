@@ -59,6 +59,18 @@ public class theSystem {
              }
          }
      }*/
+    public static void deleteCommunication(ArrayList<Message> a){
+        try {
+            DataOutputStream dos = new DataOutputStream(new FileOutputStream(communicationLog));
+            BufferedWriter buffw = new BufferedWriter(new OutputStreamWriter(dos));
+            for (int i = 0; i < a.size(); i++) {
+                Message message = a.get(i);
+                buffw.write(message.getSender()+ "_communicates with_" + message.getReciever() + "_" + message.getTopic() + "\n");
+            }
+            buffw.flush();
+            buffw.close();
+        }catch(IOException e){}
+    }
     public static void writeCommunication(String r  ,String id){
         try{
            DataOutputStream dos = new DataOutputStream(new FileOutputStream(communicationLog,true));
