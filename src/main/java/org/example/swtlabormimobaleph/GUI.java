@@ -30,6 +30,7 @@ public class GUI extends Application {
     private boolean tableEditable = true;
 
     private Stage ourPrimaryStage = new Stage();
+    private ArrayList<Message> test1 = new ArrayList<>();
     @FXML
     private TextField userField;
     @FXML
@@ -75,6 +76,10 @@ public class GUI extends Application {
     private TableColumn<String,String>employeeColumn;
     @FXML
     private TableColumn<String,String>topicColumn;
+    @FXML
+    private TableColumn<String,String>counterColumn;
+    @FXML
+    private TextField messageCounterField;
 
     @FXML
     private Button messagesAcceptButton;
@@ -102,6 +107,25 @@ public class GUI extends Application {
         ourPrimaryStage.setScene(new Scene(loginRoot));
         ourPrimaryStage.show();
     }
+    @FXML
+    public void handleMessageAcceptButton(ActionEvent e){
+        if(checkIfPossible()){
+             theSystem.writeCommunication("Supvervisor accepted" ,test1.get(Integer.parseInt(messageCounterField.getText())).getSender());
+            test1.remove(Integer.parseInt(messageCounterField.getText()));
+            }
+        }
+    @FXML
+    public void handleMessageDenyButton(ActionEvent e){
+        if(checkIfPossible()){
+
+        }
+    }
+    private boolean checkIfPossible(){
+        for(int i = 0; i < test1.size();i++){
+            if(test1.get(i).getCounter().equals(messageCounterField.getText()))return true;
+        }
+        return false;
+    }
 
     @FXML
     public void handleSave(ActionEvent event) {
@@ -124,12 +148,12 @@ public class GUI extends Application {
     @FXML
     private void handleSubmit(ActionEvent event) {
         tableView.setEditable(false);
-        theSystem.writeCommunication("Submit");
+        theSystem.writeCommunication("Submit","");
     }
 
     @FXML
     private void handleshowEmployeeCalender(ActionEvent event) throws IOException {
-        if (theSystem.currentUser instanceof Supervisor) {
+        if (theSystem.currentUser instanceof Supervisor || theSystem.currentUser instanceof HR) {
             for (int i = 0; i < theSystem.employeeList.size(); i++) {
                 if (theSystem.employeeList.get(i).getId() == Integer.parseInt(showEmployeeCalenderIDField.getText())) {
                     theSystem.currentUser = theSystem.employeeList.get(i);
@@ -145,10 +169,15 @@ public class GUI extends Application {
     @FXML
     private void handleShowMessages(ActionEvent event) {
         try {
-            String[] chat = theSystem.readCommunication();
-            ArrayList<Message> test1 = new ArrayList<>();
 
-            for(int i = 0; i < chat.length; i++) {
+            ArrayList<String> chats = theSystem.readCommunication();
+            HashSet<String> set = new HashSet<>(chats);
+            chats = new ArrayList<>(set);
+
+            String[] chat = new String[4];
+
+            for(int i = 0; i < chats.size(); i++) {
+                chat = chats.get(i).split(" ");
                 Message w = new Message(chat[0], chat[2], chat[3]);
                 test1.add(w);
             }
@@ -159,9 +188,10 @@ public class GUI extends Application {
             GUI controller = loader.getController();
             controller.employeeColumn.setCellValueFactory(new PropertyValueFactory<>("Sender"));
             controller.topicColumn.setCellValueFactory(new PropertyValueFactory<>("Topic"));
+            controller.counterColumn.setCellValueFactory(new PropertyValueFactory<>("Counter"));
 
-            ObservableList<Message> chats = FXCollections.observableArrayList(test1);
-            controller.messageTableView.setItems(chats);
+            ObservableList<Message> chats2 = FXCollections.observableArrayList(test1);
+            controller.messageTableView.setItems(chats2);
 
 
             Stage stage = new Stage();

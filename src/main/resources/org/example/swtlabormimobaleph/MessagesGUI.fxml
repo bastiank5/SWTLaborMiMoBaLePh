@@ -9,16 +9,19 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.swtlabormimobaleph.GUI">
    <children>
-      <Button fx:id="messagesAcceptButton" layoutX="449.0" layoutY="320.0" mnemonicParsing="false" text="Accept" />
-      <Button fx:id="messagesDenyButton" layoutX="520.0" layoutY="320.0" mnemonicParsing="false" text="Deny" />
+      <Button fx:id="messagesAcceptButton" layoutX="448.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleMessageAcceptButton" text="Accept" />
+      <Button fx:id="messagesDenyButton" layoutX="520.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleMessageDenyButton" text="Deny" />
       <TableView fx:id="messageTableView" layoutX="30.0" layoutY="39.0" prefHeight="259.0" prefWidth="534.0">
         <columns>
           <TableColumn fx:id="employeeColumn" prefWidth="75.0" text="Employee" />
-          <TableColumn fx:id="topicColumn" prefWidth="457.0" text="Topic" />
+          <TableColumn fx:id="topicColumn" prefWidth="395.0" text="Topic" />
+            <TableColumn fx:id="counterColumn" prefWidth="62.0" text="counter" />
         </columns>
       </TableView>
       <Button fx:id="showEmployeeCalenderButton" layoutX="30.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleshowEmployeeCalender" text="Show Employee Calender" />
       <TextField fx:id="showEmployeeCalenderIDField" layoutX="117.0" layoutY="308.0" prefHeight="25.0" prefWidth="64.0" />
       <Label layoutX="30.0" layoutY="312.0" prefHeight="17.0" prefWidth="64.0" text="ID:" />
+      <TextField fx:id="messageCounterField" layoutX="520.0" layoutY="308.0" prefHeight="25.0" prefWidth="44.0" />
+      <Label layoutX="448.0" layoutY="312.0" prefHeight="17.0" prefWidth="64.0" text="Number:" />
    </children>
 </AnchorPane>

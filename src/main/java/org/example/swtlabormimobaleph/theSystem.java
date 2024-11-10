@@ -59,19 +59,24 @@ public class theSystem {
              }
          }
      }*/
-    public static void writeCommunication(String s){
+    public static void writeCommunication(String r  ,String id){
         try{
-            DataOutputStream dos = new DataOutputStream(new FileOutputStream(communicationLog,true));
+           DataOutputStream dos = new DataOutputStream(new FileOutputStream(communicationLog,true));
             BufferedWriter buffw = new BufferedWriter(new OutputStreamWriter(dos));
-            buffw.write(currentUser.getId()+" communicateswith "+currentUser.getSupervisor().getId()+" "+s+"\n");
+            switch(r){
+                case "Submit": buffw.write(currentUser.getId()+" communicateswith "+currentUser.getSupervisor().getId()+" "+r+"\n");
+                case "Supervisor accepted":
+                    buffw.write(currentUser.getId()+" communicateswith"+ id +r+"\n");
+            }
+
             buffw.flush();
             buffw.close();
         }
-        catch(IOException e){}
+        catch(Exception e){}
     }
 
-    public static String[] readCommunication(){
-        HashSet<String> chats = new HashSet<>();
+    public static ArrayList<String> readCommunication(){
+        ArrayList<String> test = new ArrayList<>();
         String[] array = new String[4];
         try{
             DataInputStream dis = new DataInputStream(new FileInputStream(communicationLog));
@@ -79,7 +84,7 @@ public class theSystem {
             while(br.ready()){
                 array = br.readLine().split(" ");
                 if(Integer.parseInt(array[2]) ==(currentUser.getId())){
-                   return array;
+                    test.add(array[0]+" "+array[1]+ " " +array[2] +" "+ array[3]);
                 }
             }
 
@@ -88,7 +93,7 @@ public class theSystem {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return array;
+        return test;
     }
     public static void readFromFile() throws IOException {
         currentFile = new File("File" + currentUser.getId() + ".txt");
@@ -123,6 +128,14 @@ public class theSystem {
         z.setId(Integer.parseInt("2"));
         theSystem.employeeList.add(z);
         e.setSupervisor(z);
+
+        theSystem.employeePasswords.put("3","3");
+        HR h = new HR();
+        h.setFirstname("Andi");
+        h.setLastname("Latte");
+        h.setId(Integer.parseInt("3"));
+        theSystem.employeeList.add(h);
+        h.setSupervisor(z);
 
         if(employeePasswords.containsKey(id) && employeePasswords.get(id).equals(password)){
 
