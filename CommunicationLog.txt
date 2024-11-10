@@ -1,1 +1,1 @@
-2_communicates with_2_Supervisor accepted
+2_communicates with_1_Supervisor accepted

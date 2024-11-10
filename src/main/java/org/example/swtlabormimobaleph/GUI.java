@@ -96,7 +96,8 @@ public class GUI extends Application {
     @FXML
     private TextField showEmployeeCalenderIDField;
 
-    private GUI mainController;
+    private static GUI mainController;
+    private static GUI messagesController;
     private Parent loginRoot;
 
     public GUI() throws IOException {
@@ -114,10 +115,13 @@ public class GUI extends Application {
     public void handleMessageAcceptButton(ActionEvent e){
         if(checkIfPossible()){
              theSystem.writeCommunication("Supervisor accepted" ,test1.get(Integer.parseInt(messageCounterField.getText())).getSender());
-             Message z = new Message(""+theSystem.currentUser.getId(),""+test1.get(Integer.parseInt(messageCounterField.getText())).getReciever(),"Supervisor accepted");
+             Message z = new Message(""+theSystem.currentUser.getId(),""+test1.get(Integer.parseInt(messageCounterField.getText())).getSender(),"Supervisor accepted");
              test1.add(z);
             test1.remove(Integer.parseInt(messageCounterField.getText()));
             theSystem.deleteCommunication(test1);
+
+            messagesController.messageTableView.refresh();
+            //messagesController.
             }
         }
     @FXML
@@ -190,22 +194,19 @@ public class GUI extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("MessagesGUI.fxml"));
             Parent homeRoot = loader.load();
 
-            GUI controller = loader.getController();
-            controller.employeeColumn.setCellValueFactory(new PropertyValueFactory<>("Sender"));
-            controller.topicColumn.setCellValueFactory(new PropertyValueFactory<>("Topic"));
-            controller.counterColumn.setCellValueFactory(new PropertyValueFactory<>("Counter"));
+            messagesController = loader.getController();
+            messagesController.employeeColumn.setCellValueFactory(new PropertyValueFactory<>("Sender"));
+            messagesController.topicColumn.setCellValueFactory(new PropertyValueFactory<>("Topic"));
+            messagesController.counterColumn.setCellValueFactory(new PropertyValueFactory<>("Counter"));
 
             ObservableList<Message> chats2 = FXCollections.observableArrayList(test1);
             System.out.println(test1.size());
-            controller.messageTableView.setItems(chats2);
+            messagesController.messageTableView.setItems(chats2);
 
             Stage stage = new Stage();
             stage.setTitle("Messages");
             stage.setScene(new Scene(homeRoot));
             stage.show();
-
-//            Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//            loginStage.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
