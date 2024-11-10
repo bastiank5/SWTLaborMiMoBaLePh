@@ -30,7 +30,7 @@ public class GUI extends Application {
     private boolean tableEditable = true;
 
     private Stage ourPrimaryStage = new Stage();
-    private ArrayList<Message> test1 = new ArrayList<>();
+    private static ArrayList<Message> test1 = new ArrayList<>();
     @FXML
     private TextField userField;
     @FXML
@@ -110,8 +110,9 @@ public class GUI extends Application {
     @FXML
     public void handleMessageAcceptButton(ActionEvent e){
         if(checkIfPossible()){
-             theSystem.writeCommunication("Supvervisor accepted" ,test1.get(Integer.parseInt(messageCounterField.getText())).getSender());
+             theSystem.writeCommunication("Supervisor accepted" ,test1.get(Integer.parseInt(messageCounterField.getText())).getSender());
             test1.remove(Integer.parseInt(messageCounterField.getText()));
+
             }
         }
     @FXML
@@ -121,6 +122,7 @@ public class GUI extends Application {
         }
     }
     private boolean checkIfPossible(){
+        System.out.println(test1.size());
         for(int i = 0; i < test1.size();i++){
             if(test1.get(i).getCounter().equals(messageCounterField.getText()))return true;
         }
@@ -177,9 +179,9 @@ public class GUI extends Application {
             String[] chat = new String[4];
 
             for(int i = 0; i < chats.size(); i++) {
-                chat = chats.get(i).split(" ");
+                chat = chats.get(i).split("_");
                 Message w = new Message(chat[0], chat[2], chat[3]);
-                test1.add(w);
+                this.test1.add(w);
             }
             System.out.println(chat);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("MessagesGUI.fxml"));
@@ -191,6 +193,7 @@ public class GUI extends Application {
             controller.counterColumn.setCellValueFactory(new PropertyValueFactory<>("Counter"));
 
             ObservableList<Message> chats2 = FXCollections.observableArrayList(test1);
+            System.out.println(test1.size());
             controller.messageTableView.setItems(chats2);
 
 

@@ -64,9 +64,12 @@ public class theSystem {
            DataOutputStream dos = new DataOutputStream(new FileOutputStream(communicationLog,true));
             BufferedWriter buffw = new BufferedWriter(new OutputStreamWriter(dos));
             switch(r){
-                case "Submit": buffw.write(currentUser.getId()+" communicateswith "+currentUser.getSupervisor().getId()+" "+r+"\n");
+                case "Submit":
+                    buffw.write(currentUser.getId()+"_communicates with_"+currentUser.getSupervisor().getId()+"_"+r+"\n");
+                    break;
                 case "Supervisor accepted":
-                    buffw.write(currentUser.getId()+" communicateswith"+ id +r+"\n");
+                    buffw.write(currentUser.getId()+"_communicate swith_"+ id +"_"+r+"\n");
+                    break;
             }
 
             buffw.flush();
@@ -82,9 +85,9 @@ public class theSystem {
             DataInputStream dis = new DataInputStream(new FileInputStream(communicationLog));
             BufferedReader br = new BufferedReader(new InputStreamReader(dis));
             while(br.ready()){
-                array = br.readLine().split(" ");
+                array = br.readLine().split("_");
                 if(Integer.parseInt(array[2]) ==(currentUser.getId())){
-                    test.add(array[0]+" "+array[1]+ " " +array[2] +" "+ array[3]);
+                    test.add(array[0]+"_"+array[1]+ "_" +array[2] +"_"+ array[3]);
                 }
             }
 
