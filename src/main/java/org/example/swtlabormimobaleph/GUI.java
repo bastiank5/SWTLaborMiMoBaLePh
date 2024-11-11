@@ -174,7 +174,6 @@ import static org.example.swtlabormimobaleph.Absence.values;
     }
 //Prüft bei der Eingabe der Nachrichtennummer, ob diese existiert
     private boolean checkIfPossible(){
-        System.out.println(test1.size());
         for(int i = 0; i < test1.size();i++){
             if(test1.get(i).getCounter().equals(messageCounterField.getText()))return true;
         }
@@ -242,7 +241,6 @@ import static org.example.swtlabormimobaleph.Absence.values;
                 Message w = new Message(chat[0], chat[2], chat[3]);
                 this.test1.add(w);
             }
-            System.out.println(chat);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("MessagesGUI.fxml"));
             Parent homeRoot = loader.load();
 
@@ -252,7 +250,6 @@ import static org.example.swtlabormimobaleph.Absence.values;
             messagesController.counterColumn.setCellValueFactory(new PropertyValueFactory<>("Counter"));
 
             ObservableList<Message> chats2 = FXCollections.observableArrayList(test1);
-            System.out.println(test1.size());
             messagesController.messageTableView.setItems(chats2);
 
             Stage stage = new Stage();
